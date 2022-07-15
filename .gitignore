@@ -4,8 +4,8 @@
 *.ipr
 *.iws
 
-# npm
-node_modules
-
-# compile target
-*.js
+## npm
+#node_modules
+#
+## compile target
+#*.js
