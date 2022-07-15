@@ -1,10 +1,7 @@
 const template = document.createElement('template');
 template.innerHTML = `
 <style>
-    button {
-        background: none;
-        border: none;
-        padding: 0;
+    mark {
         cursor: pointer;
     }
     #annotation {
@@ -17,7 +14,7 @@ template.innerHTML = `
         border-radius: 15px;
     }
 </style>
-<button id="toggle-annotation"><mark><slot name="text"></slot></mark></button>
+<mark id="toggle-annotation"><slot name="text"></slot></mark>
 <div id="annotation">
     <slot name="annotation"></slot>
 </div>
