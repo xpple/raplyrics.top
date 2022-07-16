@@ -14,7 +14,9 @@ template.innerHTML = `
         border-radius: 15px;
     }
 </style>
-<mark id="toggle-annotation"><slot name="text"></slot></mark>
+<mark id="toggle-annotation">
+    <slot name="text"></slot>
+</mark>
 <div id="annotation">
     <slot name="annotation"></slot>
 </div>
