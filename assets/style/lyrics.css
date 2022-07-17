@@ -1,0 +1,17 @@
+section#lyrics p:is(.intro, .verse, .chorus, .bridge, .outro) {
+    border-left-width: 1em;
+    border-left-style: solid;
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
+    padding-left: 1em;
+}
+section#lyrics p.intro {
+    border-left-color: #64adc4;
+}
+section#lyrics p.verse {
+    border-left-color: #4887b7;
+}
+
+/*annotated-text::part(text):hover {*/
+/*    text-decoration: underline;*/
+/*}*/

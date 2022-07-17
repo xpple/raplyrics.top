@@ -4,24 +4,40 @@
     <meta charset="UTF-8">
     <title>Rap Lyrics Top</title>
 
-    <script src="../../assets/script/web-components/elements/HTMLAnnotatedTextElement.js" defer></script>
+    <link rel="stylesheet" href="../../assets/style/main.css">
+    <link rel="stylesheet" href="../../assets/style/lyrics.css">
+    <script src="../../assets/script/module.js" type="module" async></script>
 </head>
 <body>
 <header>
-
+    <nav>
+        <ol>
+            <li><a href="../../">Home</a></li>
+            <li><a href="../">Mesy</a></li>
+            <li><a href="./">Andere Principes</a></li>
+        </ol>
+    </nav>
 </header>
 <main>
-    <div id="song-info">
-        <h1>Andere Principes</h1>
-        <h2>Mesy</h2>
-        <p>Mesy stelt dat hij andere principes heeft dan andere rappers in de scene.</p>
-    </div>
-    <div id="lyrics">
-        <p>
+    <section id="song-info">
+        <div id="img-container">
+            <img src="https://i.scdn.co/image/ab67616d00001e021450eeda767307aeb91b06ed" alt="Andere Principes by Mesy">
+        </div>
+        <div id="about">
+            <h1>Andere Principes</h1>
+            <h2>Mesy</h2>
+            <p>Mesy stelt dat hij andere principes heeft dan andere rappers in de scene.</p>
+        </div>
+    </section>
+    <section id="lyrics">
+        <h1>Lyrics</h1>
+        <h2>Intro</h2>
+        <p class="intro">
             (...) Maar eerst: de politie was het meer dan zat - de overlast door drugscriminaliteit met name in
             Noord-Brabant en Limburg. Het liep de spuigaten uit.
         </p>
-        <p>
+        <h2>Verse 1: Mesy</h2>
+        <p class="verse">
             Mensen geloven in me, zeggen ik ben next, <br />
             maar ik ben nog in de streets jagend in m'n Air Max. <br />
             Invest in die
@@ -51,7 +67,8 @@
                     maar ik word nog meer para als ie niet rinkelt. <br />
                 </mark>
                 <span slot="annotation">
-                    Mesy staat bekend om deze lyric. Vergelijkbare lyrics komen voor in ...
+                    Ondanks de irritante ringtone van zijn telefoon, vindt Mesy het toch fijn om gebeld te worden.
+                    Gebeld worden betekent immers geld verdienen.
                 </span>
             </annotated-text>
             S-shop niet als ik ben in je winkel. <br />
@@ -62,11 +79,19 @@
             Hij dacht spullen te zien, maar hij zag alleen sterren. <br />
             This shit is real jij weet niks van me life. <br />
             Wapen sowieso minimaal wel een knife. <br />
-            Hoef geen respect of reactie, <br />
-            die shit is geen Hyves doe die shit voor me guys. <br />
-            Broer ik heb beef in de streets and it ain't nothing nice <br />
+            <annotated-text>
+                <mark slot="text">
+                    Hoef geen respect of reactie, <br />
+                    die shit is geen Hyves doe die shit voor me guys. <br />
+                </mark>
+                <span slot="annotation">
+                    <i>Hyves</i> was een socialmediaplatform, vergelijkbaar met het huidige Instagram. Mesy zegt dat
+                    hij voor zijn vrienden rapt, en dus niet voor zijn online fans.
+                </span>
+            </annotated-text>
+            Broer ik heb beef in de streets and it ain't nothing nice, <br />
             maar dat is die risk dus we payen die prijs. <br />
-            Put my life on the line maar ga niet in details nee ga niet in details. <br />
+            Put my life on the line maar ga niet in details, nee ga niet in details. <br />
             Draai nog een bom, kijk naar me smoke <br />
             Vraag me niet om een hijs want ik weet dat je choket. <br />
             Ander niveau, geld wordt gemaakt jij werkt voor loon, <br />
@@ -78,12 +103,12 @@
             Vraag het na aan je neef, ja me shit die is known. <br />
             Werd een keer geklaard na een seer, <br />
             maar ze konden niks vinden was dezelfde dag vrij. <br />
-            Hele operatie opgezet om me te pakken met spul <br />
+            Hele operatie opgezet om me te pakken met spul, <br />
             maar helaas voor hun broer ze pakten alleen mij. <br />
             Ja ik ben met Frans en we maken dubbeldekkers geen trein <br />
             en je bitch vind dat fijn. <br />
             Maar denk maar niet dat ik iets spend op die bitch; <br />
-            broer die spend op mij. <br />
+            broer die bitch spend op mij. <br />
             Nee ik kan niet zitten in een dal, <br />
             we gaan rond als een bal. <br />
             Zoek geen steun ben niet bang dat ik val. <br />
@@ -102,10 +127,12 @@
             Is dit shit slecht zal ik niet betalen. <br />
             Mesy!
         </p>
-    </div>
+    </section>
+    <section id="annotation">
+    </section>
 </main>
 <footer>
-
+    [Footer]
 </footer>
 </body>
 </html>
