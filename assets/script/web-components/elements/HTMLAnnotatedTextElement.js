@@ -6,13 +6,8 @@ template.innerHTML = `
     #text {
         cursor: pointer;
     }
-    #annotation {
-        display: none;
-    }
 </style>
-<mark id="text" part="text"><slot name="text"></slot></mark>
-<div id="annotation" part="annotation"><slot name="annotation"></slot></div>
-`
+<mark id="text" part="text"><slot name="text"></slot></mark>`
 
 export class HTMLAnnotatedTextElement extends HTMLElement {
 
@@ -26,13 +21,13 @@ export class HTMLAnnotatedTextElement extends HTMLElement {
 
     connectedCallback() {
         this.shadowRoot.getElementById("text").addEventListener('click', () => {
-            AnnotationManager.setAnnotation(this.querySelector("span[slot=annotation]").innerHTML);
+            AnnotationManager.setAnnotation(this.querySelector("template").innerHTML);
         });
     }
 
     disconnectedCallback() {
         this.shadowRoot.getElementById("text").removeEventListener('click', () => {
-            AnnotationManager.setAnnotation(this.querySelector("span[slot=annotation]").innerHTML);
+            AnnotationManager.setAnnotation(this.querySelector("template").innerHTML);
         });
     }
 }
