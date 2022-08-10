@@ -4,6 +4,9 @@
 *.ipr
 *.iws
 
+# pass
+/login_data.txt
+
 ## npm
 #node_modules
 #
