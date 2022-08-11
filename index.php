@@ -24,7 +24,7 @@ if ($hasArtistId = array_key_exists("artistId", $_GET)) {
 }
 if ($hasSongId = array_key_exists("songId", $_GET)) {
     $songId = $_GET["songId"];
-    $statement = $conn->prepare("SELECT song_title, HEX(songs.artist_id), artist_name, song_cover_image, song_lyrics FROM songs JOIN artists on songs.artist_id = artists.artist_id WHERE HEX(song_id) = :song_id");
+    $statement = $conn->prepare("SELECT song_title, HEX(songs.artist_id) as artist_id, artist_name, song_cover_image, song_lyrics FROM songs JOIN artists on songs.artist_id = artists.artist_id WHERE HEX(song_id) = :song_id");
     $statement->execute(array("song_id" => $songId));
     $statement->setFetchMode(PDO::FETCH_ASSOC);
     $result = $statement->fetchAll()[0];
