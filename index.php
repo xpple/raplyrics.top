@@ -24,15 +24,12 @@ if (array_key_exists("artistId", $_GET)) {
 //    $artistIcon = $result["artist_icon"];
 //    echo $artistName;
 //    echo '<img src="data:image/jpeg;base64,'.base64_encode($artistIcon).'"/>';
-    $statement = $conn->prepare("SELECT * FROM artists");
+    $statement = $conn->prepare("SELECT HEX(artist_id), artist_name, artist_icon FROM artists");
     $statement->execute();
     $statement->setFetchMode(PDO::FETCH_ASSOC);
-    $result = $statement->fetchAll();
-    foreach ($result as $index => $row) {
-        echo $index."    ";
-        foreach ($row as $column => $value) {
-            echo $value."  ";
-        }
+    $result = $statement->fetchAll()[0];
+    foreach ($result as $column => $value) {
+        echo $column.": ".$value."\n";
     }
 }
 
