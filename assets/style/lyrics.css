@@ -4,6 +4,8 @@ section#lyrics p:is(.intro, .verse, .chorus, .bridge, .outro) {
     border-top-left-radius: 1em;
     border-bottom-left-radius: 1em;
     padding-left: 1em;
+
+    white-space: pre-line;
 }
 section#lyrics p.intro {
     border-left-color: #64adc4;
