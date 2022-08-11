@@ -14,7 +14,7 @@ try {
     die("Server error");
 }
 
-if (array_key_exists("artistId", $_GET)) {
+if ($hasArtistId = array_key_exists("artistId", $_GET)) {
     $artistId = $_GET["artistId"];
     $statement = $conn->prepare("SELECT artist_name, artist_icon FROM artists WHERE HEX(artist_id) = :artist_id");
     $statement->execute(array("artist_id" => $artistId));
@@ -23,9 +23,23 @@ if (array_key_exists("artistId", $_GET)) {
     $artistName = $result["artist_name"];
     $artistIcon = $result["artist_icon"];
     echo $artistName;
-    echo '<img src="data:image/jpeg;base64,'.base64_encode($artistIcon).'"/>';
+    echo "<img src='data:image/jpeg;base64,".base64_encode($artistIcon)."' alt='artist_icon'/>";
 }
-
+if ($hasSongId = array_key_exists("songId", $_GET)) {
+    $songId = $_GET["songId"];
+    $statement = $conn->prepare("SELECT song_title, artist_name, song_cover_image, song_lyrics FROM songs JOIN artists on songs.artist_id = artists.artist_id WHERE HEX(song_id) = :song_id");
+    $statement->execute(array("song_id" => $songId));
+    $statement->setFetchMode(PDO::FETCH_ASSOC);
+    $result = $statement->fetchAll()[0];
+    $songTitle = $result["song_title"];
+    $artistName = $result["artist_name"];
+    $songCoverImage = $result["song_cover_image"];
+    $songLyrics = $result["song_lyrics"];
+    echo $songTitle;
+    echo $artistName;
+    echo "<img src='data:image/jpeg;base64,".base64_encode($songCoverImage)."' alt='artist_icon'/>";
+    echo $songLyrics;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
