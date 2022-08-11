@@ -37,7 +37,7 @@ if ($hasSongId = array_key_exists("songId", $_GET)) {
     $songLyrics = $result["song_lyrics"];
     echo $songTitle;
     echo $artistName;
-    echo "<img src='data:image/jpeg;base64,".base64_encode($songCoverImage)."' alt='artist_icon'/>";
+    echo "<img src='data:image/jpeg;base64,".base64_encode($songCoverImage)."' alt='song_cover_image'/>";
     echo $songLyrics;
 }
 ?>
