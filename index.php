@@ -16,21 +16,14 @@ try {
 
 if (array_key_exists("artistId", $_GET)) {
     $artistId = $_GET["artistId"];
-//    $statement = $conn->prepare("SELECT artist_name, artist_icon FROM artists WHERE artist_id = :artist_id");
-//    $statement->execute(array("artist_id" => $artistId));
-//    $statement->setFetchMode(PDO::FETCH_ASSOC);
-//    $result = $statement->fetchAll()[0];
-//    $artistName = $result["artist_name"];
-//    $artistIcon = $result["artist_icon"];
-//    echo $artistName;
-//    echo '<img src="data:image/jpeg;base64,'.base64_encode($artistIcon).'"/>';
-    $statement = $conn->prepare("SELECT HEX(artist_id), artist_name, artist_icon FROM artists");
-    $statement->execute();
+    $statement = $conn->prepare("SELECT artist_name, artist_icon FROM artists WHERE HEX(artist_id) = :artist_id");
+    $statement->execute(array("artist_id" => $artistId));
     $statement->setFetchMode(PDO::FETCH_ASSOC);
     $result = $statement->fetchAll()[0];
-    foreach ($result as $column => $value) {
-        echo $column.": ".$value."\n";
-    }
+    $artistName = $result["artist_name"];
+    $artistIcon = $result["artist_icon"];
+    echo $artistName;
+    echo '<img src="data:image/jpeg;base64,'.base64_encode($artistIcon).'"/>';
 }
 
 ?>
