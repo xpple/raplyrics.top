@@ -11,8 +11,21 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     echo "Connected successfully";
 } catch(PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
+    die("Server error");
 }
+
+if (array_key_exists("artistId", $_GET)) {
+    $artistId = $_GET["artistId"];
+    $statement = $conn->prepare("SELECT artist_name, artist_icon FROM artists WHERE artist_id = :artist_id");
+    $statement->execute(array("artist_id" => $artistId));
+    $statement->setFetchMode(PDO::FETCH_ASSOC);
+    $result = $statement->fetchAll()[0];
+    $artistName = $result["artist_name"];
+    $artistIcon = $result["artist_icon"];
+    echo $artistName;
+    echo '<img src="data:image/jpeg;base64,'.base64_encode($artistIcon).'"/>';
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
