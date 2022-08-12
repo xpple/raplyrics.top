@@ -39,7 +39,9 @@ require("./php/connect.php");
     </section>
     <section id="lyrics">
         <h1>Lyrics</h1>
-        <?php echo $songLyrics ?>
+        <p class="verse">
+            <?php echo $songLyrics ?>
+        </p>
     </section>
     <section id="annotation">
     </section>
