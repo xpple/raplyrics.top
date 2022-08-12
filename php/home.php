@@ -12,6 +12,6 @@ if (count(get_included_files()) == 1) {
     <title>Rap Lyrics Top</title>
 </head>
 <body>
-Content coming soon. See <a href="?songId=50f666711a7711ed98a19628672b6619"></a>
+Content coming soon. See <a href="?songId=50f666711a7711ed98a19628672b6619">Good Guy by Eminem</a>
 </body>
 </html>
