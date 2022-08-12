@@ -2,8 +2,14 @@
 require("./php/connect.php");
 
 
-if ($hasSongId and $isValidRequest) {
-    require("./php/song.php");
-} elseif ($hasArtistId and $isValidRequest) {
-    require("./php/artist.php");
+if ($isValidRequest) {
+    if ($hasSongId) {
+        require("./php/song.php");
+    } elseif ($hasArtistId) {
+        require("./php/artist.php");
+    } else {
+        require("./php/home.php");
+    }
+} else {
+    require("./php/unknown.php");
 }
