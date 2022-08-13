@@ -2,13 +2,8 @@
 if (count(get_included_files()) == 1) {
     exit("Direct access not permitted.");
 }
+require_once("./login-data.php");
 
-extract(file("login_data.txt", FILE_IGNORE_NEW_LINES), EXTR_PREFIX_ALL, "loginData");
-$server = $loginData_0;
-$port = $loginData_1;
-$user = $loginData_2;
-$pass = $loginData_3;
-$dbname = $loginData_4;
 
 try {
     $conn = new PDO("mysql:host=$server;port=$port;dbname=$dbname", $user, $pass);

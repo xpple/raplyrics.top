@@ -5,7 +5,7 @@
 *.iws
 
 # pass
-/login_data.txt
+/login-data.php
 
 ## npm
 #node_modules
