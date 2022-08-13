@@ -3,6 +3,21 @@ if (count(get_included_files()) == 1) {
     exit("Direct access not permitted.");
 }
 require_once("./php/connect.php");
+
+
+function formatLyrics(string $lyrics): string {
+    $result = "";
+    preg_match_all("/(?'brackets'^\[([^\s:\]]+):?\s*([^]]+)?])[\s\n]+([\s\S]*?)(?=(?&brackets)|\z)/m", $lyrics, $matches, PREG_SET_ORDER);
+    foreach ($matches as $match) {
+        if (empty($match[2])) {
+            $result .= "<h2>$match[2]</h2>";
+        } else {
+            $result .= "<h2>$match[2]: $match[3]</h2>";
+        }
+        $result .= "<p class=\"" . strtolower($match[2]) . "\">$match[4]</p>";
+    }
+    return $result;
+}
 ?>
 
 <!DOCTYPE html>
@@ -39,9 +54,7 @@ require_once("./php/connect.php");
     </section>
     <section id="lyrics">
         <h1>Lyrics</h1>
-        <p class="verse">
-            <?php echo $songLyrics ?>
-        </p>
+        <?php echo formatLyrics($lyrics) ?>
     </section>
     <section id="annotation">
     </section>
