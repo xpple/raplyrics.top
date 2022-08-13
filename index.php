@@ -1,15 +1,15 @@
 <?php
-require("./php/connect.php");
+require_once("./php/connect.php");
 
 
 if ($isValidRequest) {
     if ($hasSongId) {
-        require("./php/song.php");
+        require_once("./php/song.php");
     } elseif ($hasArtistId) {
-        require("./php/artist.php");
+        require_once("./php/artist.php");
     } else {
-        require("./php/home.php");
+        require_once("./php/home.php");
     }
 } else {
-    require("./php/unknown.php");
+    require_once("./php/unknown.php");
 }
