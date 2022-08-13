@@ -9,7 +9,7 @@ function formatLyrics(string $lyrics): string {
     $result = "";
     preg_match_all("/(?'brackets'^\[([^\s:\]]+):?\s*([^]]+)?])[\s\n]+([\s\S]*?)(?=(?&brackets)|\z)/m", $lyrics, $matches, PREG_SET_ORDER);
     foreach ($matches as $match) {
-        if (empty($match[2])) {
+        if (empty($match[3])) {
             $result .= "<h2>$match[2]</h2>";
         } else {
             $result .= "<h2>$match[2]: $match[3]</h2>";
