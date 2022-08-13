@@ -54,10 +54,7 @@ function formatLyrics(string $lyrics): string {
     </section>
     <section id="lyrics">
         <h1>Lyrics</h1>
-        <?php
-        echo($lyrics);
-        echo(formatLyrics($lyrics));
-        ?>
+        <?php echo formatLyrics($songLyrics) ?>
     </section>
     <section id="annotation">
     </section>
