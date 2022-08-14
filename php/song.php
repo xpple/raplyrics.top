@@ -65,7 +65,7 @@ function formatLyrics(string $lyrics): string {
 <main>
     <section id="song-info">
         <div id="img-container">
-            <img src="data:image/jpeg;base64,<?php echo $songCoverImageBase64 ?>" alt="<?php echo $songTitle ?> by <?php echo $artistName ?>"/>
+            <img src="data:image/jpeg;base64,<?php echo $songCoverImageBase64 ?>" alt="<?php echo $songTitle ?> by <?php echo $artistName ?>" width="300px" height="300px">
         </div>
         <div id="about">
             <h1><?php echo $songTitle ?></h1>
