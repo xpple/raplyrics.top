@@ -27,7 +27,6 @@ if ($hasArtistId = array_key_exists("artistId", $_GET)) {
     } else {
         $isValidRequest = false;
     }
-
 }
 if ($hasSongId = array_key_exists("songId", $_GET)) {
     $songId = $_GET["songId"];
@@ -44,6 +43,11 @@ if ($hasSongId = array_key_exists("songId", $_GET)) {
         $songCoverImageBase64 = base64_encode($songCoverImage);
         $songDescription = $row["song_description"];
         $songLyrics = $row["song_lyrics"];
+
+        $statement = $conn->prepare("SELECT annotation_start, annotation_length, annotation, annotation_type FROM annotations WHERE HEX(song_id) = :song_id ORDER BY annotation_start ASC");
+        $statement->execute(array("song_id" => $songId));
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
+        $annotations = $statement->fetchAll();
     } else {
         $isValidRequest = false;
     }

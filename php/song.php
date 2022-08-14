@@ -5,6 +5,27 @@ if (count(get_included_files()) == 1) {
 require_once("./php/connect.php");
 
 
+function applyAnnotations(string $lyrics, array $annotations): string {
+    $result = $lyrics;
+    $offset = 0;
+    foreach ($annotations as $annotationEntry) {
+        $annotationStart = $annotationEntry["annotation_start"];
+        $annotationLength = $annotationEntry["annotation_length"];
+        $annotation = $annotationEntry["annotation"];
+        $annotationType = $annotationEntry["annotation_type"];
+        $annotatedText = substr($lyrics, $annotationStart + $offset, $annotationLength + $offset);
+        $replacementString = <<<HTML
+            <annotated-text>
+                <span slot="text">$annotatedText</span>
+                <template>$annotation</template>
+            </annotated-text>
+            HTML;
+        $result = substr_replace($lyrics, $replacementString, $annotationStart + $offset, $annotationLength + $offset);
+        $offset += strlen($replacementString) - strlen($annotatedText);
+    }
+    return $result;
+}
+
 function formatLyrics(string $lyrics): string {
     $result = "";
     preg_match_all("/(?'brackets'^\[([^\s:\]]+):?\s*([^]]+)?])[\s\n]+([\s\S]*?)(?=(?&brackets)|\z)/m", $lyrics, $matches, PREG_SET_ORDER);
@@ -54,7 +75,9 @@ function formatLyrics(string $lyrics): string {
     </section>
     <section id="lyrics">
         <h1>Lyrics</h1>
-        <?php echo formatLyrics($songLyrics) ?>
+        <?php
+        echo applyAnnotations($songLyrics, $annotations);
+        ?>
     </section>
     <section id="annotation">
     </section>
