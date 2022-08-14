@@ -76,7 +76,7 @@ function formatLyrics(string $lyrics): string {
     <section id="lyrics">
         <h1>Lyrics</h1>
         <?php
-        echo applyAnnotations($songLyrics, $annotations);
+        echo formatLyrics(applyAnnotations($songLyrics, $annotations));
         ?>
     </section>
     <section id="annotation">
