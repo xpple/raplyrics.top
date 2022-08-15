@@ -8,19 +8,26 @@ require_once("./php/connect.php");
 function applyAnnotations(string $lyrics, array $annotations): string {
     $result = $lyrics;
     $offset = 0;
+    if (array_key_exists("annotationType", $_GET)) {
+        $annotationType = $_GET["annotationType"];
+    } else {
+        $annotationType = "meaning";
+    }
     foreach ($annotations as $annotationEntry) {
+        if ($annotationEntry["annotation_type"] != $annotationType) {
+            continue;
+        }
         $annotationStart = $annotationEntry["annotation_start"];
         $annotationLength = $annotationEntry["annotation_length"];
         $annotation = $annotationEntry["annotation"];
-        $annotationType = $annotationEntry["annotation_type"];
-        $annotatedText = substr($lyrics, $annotationStart + $offset, $annotationLength + $offset);
+        $annotatedText = substr($result, $annotationStart + $offset, $annotationLength + $offset);
         $replacementString = <<<HTML
             <annotated-text>
                 <span slot="text">$annotatedText</span>
                 <template>$annotation</template>
             </annotated-text>
             HTML;
-        $result = substr_replace($lyrics, $replacementString, $annotationStart + $offset, $annotationLength + $offset);
+        $result = substr_replace($result, $replacementString, $annotationStart + $offset, $annotationLength + $offset);
         $offset += strlen($replacementString) - strlen($annotatedText);
     }
     return $result;
@@ -74,6 +81,15 @@ function formatLyrics(string $lyrics): string {
         </div>
     </section>
     <section id="lyrics">
+        <span>Annotations:</span>
+        <div id="option-container">
+            <div class="option">
+                <span>meaning</span>
+            </div>
+            <div class="option">
+                <span>rhythm</span>
+            </div>
+        </div>
         <h1>Lyrics</h1>
         <?php
         echo formatLyrics(applyAnnotations($songLyrics, $annotations));
