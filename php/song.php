@@ -83,12 +83,31 @@ function formatLyrics(string $lyrics): string {
     <section id="lyrics">
         <span>Annotations:</span>
         <div id="option-container">
-            <div class="option">
-                <span>meaning</span>
-            </div>
-            <div class="option">
-                <span>rhythm</span>
-            </div>
+            <?php
+            switch($_GET["annotationType"] ?? null) {
+                default:
+                case "meaning":
+                    echo <<<HTML
+                        <div class="option active">
+                            <span>meaning</span>
+                        </div>
+                        <div class="option">
+                            <span>rhythm</span>
+                        </div>
+                        HTML;
+                    break;
+                case "rhythm":
+                    echo <<<HTML
+                        <div class="option">
+                            <span>meaning</span>
+                        </div>
+                        <div class="option active">
+                            <span>rhythm</span>
+                        </div>
+                        HTML;
+                    break;
+            }
+            ?>
         </div>
         <h1>Lyrics</h1>
         <?php

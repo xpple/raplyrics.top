@@ -14,22 +14,24 @@ section#lyrics div.option {
     padding-right: 1em;
 
     border-left-style: solid;
+
+    background-color: lightgrey;
+}
+
+section#lyrics div.option.active {
+    background-color: lightgreen;
 }
 
 section#lyrics div.option:first-child {
     border-left-style: solid;
     border-top-left-radius: 1em;
     border-bottom-left-radius: 1em;
-
-    background-color: lightgreen;
 }
 
 section#lyrics div.option:last-child {
     border-right-style: solid;
     border-top-right-radius: 1em;
     border-bottom-right-radius: 1em;
-
-    background-color: lightgrey;
 }
 
 section#lyrics p:is(.intro, .verse, .chorus, .bridge, .outro) {
