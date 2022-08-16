@@ -6,10 +6,10 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/php/connect.php");
 
 
 if ($songId) {
-    $statement = $conn->prepare("SELECT HEX(song_id) as song_id, song_title, HEX(songs.artist_id) as artist_id, artist_name, song_cover_image, song_description, song_lyrics FROM songs JOIN artists on songs.artist_id = artists.artist_id WHERE HEX(song_id) = :song_id");
+    $statement = $conn->prepare("SELECT HEX(song_id) as song_id, song_title, HEX(songs.artist_id) as artist_id, artist_name, artist_directory, song_cover_image, song_description, song_lyrics, song_directory FROM songs JOIN artists on songs.artist_id = artists.artist_id WHERE HEX(song_id) = :song_id");
     $statement->execute(array("song_id" => $songId));
 } elseif($artistDirectory and $songDirectory) {
-    $statement = $conn->prepare("SELECT HEX(song_id) as song_id, song_title, HEX(songs.artist_id) as artist_id, artist_name, song_cover_image, song_description, song_lyrics FROM songs JOIN artists on songs.artist_id = artists.artist_id WHERE artist_directory = :artist_directory AND song_directory = :song_directory");
+    $statement = $conn->prepare("SELECT HEX(song_id) as song_id, song_title, HEX(songs.artist_id) as artist_id, artist_name, artist_directory, song_cover_image, song_description, song_lyrics, song_directory FROM songs JOIN artists on songs.artist_id = artists.artist_id WHERE artist_directory = :artist_directory AND song_directory = :song_directory");
     $statement->execute(array("artist_directory" => $artistDirectory, "song_directory" => $songDirectory));
 } else {
     require_once($_SERVER['DOCUMENT_ROOT'] . "/php/unknown.php");
@@ -27,10 +27,12 @@ $songId = $row["song_id"];
 $songTitle = $row["song_title"];
 $artistId = $row["artist_id"];
 $artistName = $row["artist_name"];
+$artistDirectory = $row["artist_directory"];
 $songCoverImage = $row["song_cover_image"];
 $songCoverImageBase64 = base64_encode($songCoverImage);
 $songDescription = $row["song_description"];
 $songLyrics = $row["song_lyrics"];
+$songDirectory = $row["song_directory"];
 
 $statement = $conn->prepare("SELECT annotation_start, annotation_length, annotation, annotation_type FROM annotations WHERE HEX(song_id) = :song_id ORDER BY annotation_start ASC");
 $statement->execute(array("song_id" => $songId));
