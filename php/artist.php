@@ -6,10 +6,10 @@ require_once("./php/connect.php");
 
 
 if ($artistId) {
-    $statement = $conn->prepare("SELECT artist_name, artist_icon FROM artists WHERE HEX(artist_id) = :artist_id");
+    $statement = $conn->prepare("SELECT HEX(artist_id) as artist_id, artist_name, artist_icon FROM artists WHERE HEX(artist_id) = :artist_id");
     $statement->execute(array("artist_id" => $artistId));
 } elseif ($artistDirectory) {
-    $statement = $conn->prepare("SELECT artist_name, artist_icon FROM artists WHERE artist_directory = :artist_directory");
+    $statement = $conn->prepare("SELECT HEX(artist_id) as artist_id, artist_name, artist_icon FROM artists WHERE artist_directory = :artist_directory");
     $statement->execute(array("artist_directory" => $artistDirectory));
 } else {
     require_once("./php/unknown.php");
@@ -23,6 +23,7 @@ if (count($result) != 1) {
     exit();
 }
 $row = $result[0];
+$artistId = $row["artist_id"];
 $artistName = $row["artist_name"];
 $artistIcon = $row["artist_icon"];
 $artistIconBase64 = base64_encode($artistIcon);
