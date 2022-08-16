@@ -88,15 +88,15 @@ function formatLyrics(string $lyrics): string {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo $artistName ?> - <?php echo $songTitle ?> | Rap Lyrics Top</title>
 
-    <link rel="stylesheet" href="../assets/style/main.css">
-    <link rel="stylesheet" href="../assets/style/lyrics.css">
-    <script src="../assets/script/module.js" type="module" async></script>
+    <link rel="stylesheet" href="/assets/style/main.css">
+    <link rel="stylesheet" href="/assets/style/lyrics.css">
+    <script src="/assets/script/module.js" type="module" async></script>
 </head>
 <body>
 <header>
     <nav>
         <ol>
-            <li><a href="./">Home</a></li>
+            <li><a href="">Home</a></li>
             <li><a href="?artistId=<?php echo $artistId?>"><?php echo $artistName ?></a></li>
             <li><a href="?songId=<?php echo $songId ?>"><?php echo $songTitle ?></a></li>
         </ol>
