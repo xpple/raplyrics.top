@@ -121,7 +121,7 @@ function formatLyrics(string $lyrics): string {
             <?php
             $options = array("meaning", "stylistic devices", "rhythm");
             foreach ($options as $option) {
-                $class = $_GET["annotationType"] ?? "meaning" == $option ? " active" : "";
+                $class = ($_GET["annotationType"] ?? "meaning") == $option ? " active" : "";
                 echo(<<<HTML
                     <div class="option$class">
                         <span>$option</span>
