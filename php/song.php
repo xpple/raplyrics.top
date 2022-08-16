@@ -96,9 +96,9 @@ function formatLyrics(string $lyrics): string {
 <header>
     <nav>
         <ol>
-            <li><a href="">Home</a></li>
-            <li><a href="?artistId=<?php echo $artistId?>"><?php echo $artistName ?></a></li>
-            <li><a href="?songId=<?php echo $songId ?>"><?php echo $songTitle ?></a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/artists/<?php echo $artistDirectory ?>/"><?php echo $artistName ?></a></li>
+            <li><a href="/songs/<?php echo $artistDirectory ?>/<?php echo $songDirectory ?>/"><?php echo $songTitle ?></a></li>
         </ol>
     </nav>
 </header>
