@@ -10,7 +10,7 @@ if ($dirCount == 1) {
     if ($artistDirectory == "index.php") {
         require_once("./php/songs.php");
     } else {
-        header("Location: artists/$artistDirectory/", true, 301);
+        header("Location: https://raplyrics.top/artists/$artistDirectory/", true, 301);
     }
 } elseif ($dirCount == 3) {
     $artistDirectory = $dirs[1];
