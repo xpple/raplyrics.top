@@ -43,11 +43,7 @@ $annotations = $statement->fetchAll();
 function applyAnnotations(string $lyrics, array $annotations): string {
     $result = $lyrics;
     $offset = 0;
-    if (array_key_exists("annotationType", $_GET)) {
-        $annotationType = $_GET["annotationType"];
-    } else {
-        $annotationType = "meaning";
-    }
+    $annotationType = $_GET["annotationType"] ?? "meaning";
     foreach ($annotations as $annotationEntry) {
         if ($annotationEntry["annotation_type"] != $annotationType) {
             continue;
