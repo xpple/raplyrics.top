@@ -51,14 +51,14 @@ function applyAnnotations(string $lyrics, array $annotations): string {
         $annotationStart = $annotationEntry["annotation_start"];
         $annotationLength = $annotationEntry["annotation_length"];
         $annotation = $annotationEntry["annotation"];
-        $annotatedText = substr($result, $annotationStart + $offset, $annotationLength + $offset);
+        $annotatedText = substr($result, $annotationStart + $offset, $annotationLength);
         $replacementString = <<<HTML
             <annotated-text>
                 <span slot="text">$annotatedText</span>
                 <template>$annotation</template>
             </annotated-text>
             HTML;
-        $result = substr_replace($result, $replacementString, $annotationStart + $offset, $annotationLength + $offset);
+        $result = substr_replace($result, $replacementString, $annotationStart + $offset, $annotationLength);
         $offset += strlen($replacementString) - strlen($annotatedText);
     }
     return $result;
