@@ -34,7 +34,7 @@ $artistIconBase64 = base64_encode($artistIcon);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php echo $artistName ?> | Rap Lyrics Top</title>
+    <title><?= $artistName ?> | Rap Lyrics Top</title>
 </head>
 <body>
 Soon.

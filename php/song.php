@@ -84,7 +84,7 @@ function formatLyrics(string $lyrics): string {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php echo $artistName ?> - <?php echo $songTitle ?> | Rap Lyrics Top</title>
+    <title><?= $artistName ?> - <?= $songTitle ?> | Rap Lyrics Top</title>
 
     <link rel="stylesheet" href="/assets/style/main.css">
     <link rel="stylesheet" href="/assets/style/lyrics.css">
@@ -95,20 +95,20 @@ function formatLyrics(string $lyrics): string {
     <nav>
         <ol>
             <li><a href="/">Home</a></li>
-            <li><a href="/artists/<?php echo $artistDirectory ?>/"><?php echo $artistName ?></a></li>
-            <li><a href="/songs/<?php echo $artistDirectory ?>/<?php echo $songDirectory ?>/"><?php echo $songTitle ?></a></li>
+            <li><a href="/artists/<?= $artistDirectory ?>/"><?= $artistName ?></a></li>
+            <li><a href="/songs/<?= $artistDirectory ?>/<?= $songDirectory ?>/"><?= $songTitle ?></a></li>
         </ol>
     </nav>
 </header>
 <main>
     <section id="song-info">
         <div id="img-container">
-            <img src="data:image/jpeg;base64,<?php echo $songCoverImageBase64 ?>" alt="<?php echo $songTitle ?> by <?php echo $artistName ?>" width="300px" height="300px">
+            <img src="data:image/jpeg;base64,<?= $songCoverImageBase64 ?>" alt="<?= $songTitle ?> by <?= $artistName ?>" width="300px" height="300px">
         </div>
         <div id="about">
-            <h1><?php echo $songTitle ?></h1>
-            <h2><?php echo $artistName ?></h2>
-            <p><?php echo $songDescription ?></p>
+            <h1><?= $songTitle ?></h1>
+            <h2><?= $artistName ?></h2>
+            <p><?= $songDescription ?></p>
         </div>
     </section>
     <section id="lyrics">
