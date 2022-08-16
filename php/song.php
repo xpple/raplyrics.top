@@ -119,28 +119,14 @@ function formatLyrics(string $lyrics): string {
         <span>Annotations:</span>
         <div id="option-container">
             <?php
-            switch($_GET["annotationType"] ?? null) {
-                default:
-                case "meaning":
-                    echo <<<HTML
-                        <div class="option active">
-                            <span>meaning</span>
-                        </div>
-                        <div class="option">
-                            <span>rhythm</span>
-                        </div>
-                        HTML;
-                    break;
-                case "rhythm":
-                    echo <<<HTML
-                        <div class="option">
-                            <span>meaning</span>
-                        </div>
-                        <div class="option active">
-                            <span>rhythm</span>
-                        </div>
-                        HTML;
-                    break;
+            $options = array("meaning", "stylistic devices", "rhythm");
+            foreach ($options as $option) {
+                $class = ($_GET["annotationType"] ?? null == $option) ? " active" : "";
+                echo(<<<HTML
+                    <div class="option$class">
+                        <span>$option</span>
+                    </div>
+                    HTML);
             }
             ?>
         </div>
