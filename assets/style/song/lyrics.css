@@ -1,13 +1,26 @@
-section#lyrics div#option-container {
+section#lyrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+div#content {
+    padding-left: 75px;
+}
+
+div#annotation {
+    padding-right: 75px;
+}
+
+div#content div#option-container {
     display: inline-flex;
     justify-content: space-around;
 }
 
-section#lyrics div#option-container:hover {
+div#content div#option-container:hover {
     cursor: pointer;
 }
 
-section#lyrics div.option {
+div#content div.option {
     border-top-style: solid;
     border-bottom-style: solid;
     padding-left: 1em;
@@ -18,23 +31,23 @@ section#lyrics div.option {
     background-color: lightgrey;
 }
 
-section#lyrics div.option.active {
+div#content div.option.active {
     background-color: lightgreen;
 }
 
-section#lyrics div.option:first-child {
+div#content div.option:first-child {
     border-left-style: solid;
     border-top-left-radius: 1em;
     border-bottom-left-radius: 1em;
 }
 
-section#lyrics div.option:last-child {
+div#content div.option:last-child {
     border-right-style: solid;
     border-top-right-radius: 1em;
     border-bottom-right-radius: 1em;
 }
 
-section#lyrics p:is(.intro, .verse, .chorus, .bridge, .outro) {
+div#content p:is(.intro, .verse, .chorus, .bridge, .outro) {
     border-left-width: 1em;
     border-left-style: solid;
     border-top-left-radius: 1em;
@@ -43,10 +56,10 @@ section#lyrics p:is(.intro, .verse, .chorus, .bridge, .outro) {
 
     white-space: pre-line;
 }
-section#lyrics p.intro {
+div#content p.intro {
     border-left-color: #64adc4;
 }
-section#lyrics p.verse {
+div#content p.verse {
     border-left-color: #4887b7;
 }
 

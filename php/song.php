@@ -87,7 +87,8 @@ function formatLyrics(string $lyrics): string {
     <title><?= $artistName ?> - <?= $songTitle ?> | Rap Lyrics Top</title>
 
     <link rel="stylesheet" href="/assets/style/main.css">
-    <link rel="stylesheet" href="/assets/style/lyrics.css">
+    <link rel="stylesheet" href="/assets/style/song/song-info.css">
+    <link rel="stylesheet" href="/assets/style/song/lyrics.css">
     <script src="/assets/script/module.js" type="module" async></script>
 </head>
 <body>
@@ -113,26 +114,29 @@ function formatLyrics(string $lyrics): string {
         </div>
     </section>
     <section id="lyrics">
-        <span>Annotations:</span>
-        <div id="option-container">
-            <?php
-            $options = array("meaning", "stylistic devices", "rhythm");
-            foreach ($options as $option) {
-                $class = ($_GET["annotationType"] ?? "meaning") == $option ? " active" : "";
-                echo(<<<HTML
+        <div id="content">
+            <span>Annotations:</span>
+            <div id="option-container">
+                <?php
+                $options = array("meaning", "stylistic devices", "rhythm");
+                foreach ($options as $option) {
+                    $class = ($_GET["annotationType"] ?? "meaning") == $option ? " active" : "";
+                    echo(<<<HTML
                     <div class="option$class">
                         <span>$option</span>
                     </div>
                     HTML);
-            }
+                }
+                ?>
+            </div>
+            <h1>Lyrics</h1>
+            <?php
+            echo formatLyrics(applyAnnotations($songLyrics, $annotations));
             ?>
         </div>
-        <h1>Lyrics</h1>
-        <?php
-        echo formatLyrics(applyAnnotations($songLyrics, $annotations));
-        ?>
+        <div id="annotation"></div>
     </section>
-    <section id="annotation">
+    <section id="submissions">
     </section>
 </main>
 <footer>

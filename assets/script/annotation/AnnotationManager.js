@@ -1,6 +1,6 @@
 export class AnnotationManager {
     static #currentAnnotation = null;
-    static #annotationSection = document.querySelector("section#annotation");
+    static #annotationSection = document.querySelector("div#annotation");
 
     static setAnnotation(annotation) {
         AnnotationManager.#currentAnnotation = annotation;
