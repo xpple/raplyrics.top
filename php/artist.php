@@ -44,7 +44,7 @@ $artistIconBase64 = base64_encode($artistIcon);
         <ol>
             <li><a href="/">Home</a></li>
             <li><a href="/artists/">Artists</a></li>
-            <li><a href="/artists/<?= $artistDirectory ?>/"></a><?= $artistName ?></li>
+            <li><a href="/artists/<?= $artistDirectory ?>/"><?= $artistName ?></a></li>
         </ol>
     </nav>
 </header>
