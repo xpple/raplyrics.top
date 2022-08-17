@@ -14,10 +14,10 @@ header nav ol {
     margin: 0;
 }
 header nav ol li {
-    display: inline-block;
+    display: inline;
 }
 header nav ol li:not(:last-child)::after {
-    display: inline-block;
+    display: inline;
     content: ">";
     padding-left: 5px;
 }

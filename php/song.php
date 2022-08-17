@@ -95,6 +95,7 @@ function formatLyrics(string $lyrics): string {
     <nav>
         <ol>
             <li><a href="/">Home</a></li>
+            <li><a href="/songs/">Songs</a></li>
             <li><a href="/artists/<?= $artistDirectory ?>/"><?= $artistName ?></a></li>
             <li><a href="/songs/<?= $artistDirectory ?>/<?= $songDirectory ?>/"><?= $songTitle ?></a></li>
         </ol>
