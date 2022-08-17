@@ -35,8 +35,20 @@ $artistIconBase64 = base64_encode($artistIcon);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= $artistName ?> | Rap Lyrics Top</title>
+
+    <link rel="stylesheet" href="/assets/style/main.css">
 </head>
 <body>
-Soon.
+<header>
+    <nav>
+        <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href="/artists/">Artists</a></li>
+            <li><a href="/artists/<?= $artistDirectory ?>/"></a><?= $artistName ?></li>
+        </ol>
+    </nav>
+</header>
+<main></main>
+<footer></footer>
 </body>
 </html>
