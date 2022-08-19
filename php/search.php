@@ -19,8 +19,10 @@ if (isset($searchQuery)) {
 $statement->setFetchMode(PDO::FETCH_ASSOC);
 $artistResults = $statement->fetchAll();
 $statement->nextRowset();
+$statement->setFetchMode(PDO::FETCH_ASSOC);
 $songResults = $statement->fetchAll();
 $statement->nextRowset();
+$statement->setFetchMode(PDO::FETCH_ASSOC);
 $lyricResults = $statement->fetchAll();
 ?>
 
