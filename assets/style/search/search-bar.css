@@ -1,0 +1,16 @@
+header {
+    padding: 2em 75px;
+}
+
+form#search-form label {
+    display: none;
+}
+form#search-form input {
+    width: 50%;
+}
+form#search-form :is(input, button) {
+    font-size: 17px;
+}
+form#search-form button:hover {
+    cursor: pointer;
+}

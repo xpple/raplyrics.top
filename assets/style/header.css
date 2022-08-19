@@ -1,0 +1,41 @@
+header {
+    display: flex;
+    justify-content: space-between;
+}
+nav {
+    padding: 1em;
+}
+nav ol {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+nav ol li {
+    display: inline;
+}
+nav ol li:not(:last-child)::after {
+    display: inline;
+    content: ">";
+    padding-left: 5px;
+}
+nav form {
+    display: flex;
+    height: 100%;
+}
+nav form label {
+    display: none;
+}
+nav form input {
+    padding: 0;
+    border: none;
+    font-size: 17px;
+}
+nav form button {
+    margin: 0;
+    padding: 0 1em;
+    border: none;
+    font-size: 17px;
+}
+nav form button:hover {
+    cursor: pointer;
+}

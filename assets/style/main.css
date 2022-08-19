@@ -1,22 +1,6 @@
 html {
     font-family: helvetica, sans-serif;
     font-size: 17px;
-}
-
-header nav {
-    padding: 1em;
-    border-radius: 10px;
-}
-header nav ol {
-    list-style-type: none;
-    padding-left: 0;
-    margin: 0;
-}
-header nav ol li {
-    display: inline;
-}
-header nav ol li:not(:last-child)::after {
-    display: inline;
-    content: ">";
-    padding-left: 5px;
+    color: #21252a;
+    background-color: #f8f9fa;
 }

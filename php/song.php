@@ -23,9 +23,7 @@ if (count($result) != 1) {
     exit();
 }
 $row = $result[0];
-$songId = $row["song_id"];
 $songTitle = $row["song_title"];
-$artistId = $row["artist_id"];
 $artistName = $row["artist_name"];
 $artistDirectory = $row["artist_directory"];
 $songCoverImage = $row["song_cover_image"];
@@ -87,19 +85,27 @@ function formatLyrics(string $lyrics): string {
     <title><?= $artistName ?> - <?= $songTitle ?> | Rap Lyrics Top</title>
 
     <link rel="stylesheet" href="/assets/style/main.css">
+    <link rel="stylesheet" href="/assets/style/header.css">
     <link rel="stylesheet" href="/assets/style/song/song-info.css">
     <link rel="stylesheet" href="/assets/style/song/lyrics.css">
     <script src="/assets/script/module.js" type="module" async></script>
 </head>
 <body>
 <header>
-    <nav>
+    <nav aria-label="breadcrumbs">
         <ol>
             <li><a href="/">Home</a></li>
             <li><a href="/songs/">Songs</a></li>
             <li><a href="/artists/<?= $artistDirectory ?>/"><?= $artistName ?></a></li>
             <li><a href="/songs/<?= $artistDirectory ?>/<?= $songDirectory ?>/"><?= $songTitle ?></a></li>
         </ol>
+    </nav>
+    <nav aria-label="search component">
+        <form role="search" id="search-form" method="post">
+            <label for="search-input">Search</label>
+            <input type="text" id="search-input" name="query" placeholder="Search for anything">
+            <button type="submit">Search</button>
+        </form>
     </nav>
 </header>
 <main>

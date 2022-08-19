@@ -1,9 +1,10 @@
 section#song-info {
     height: 300px;
-    background-color: #bfdbc4;
     display: flex;
     gap: 3em;
     margin-bottom: 4em;
+
+    background-color: #eaedef;
 }
 section#song-info div#img-container {
     margin-left: 2em;
