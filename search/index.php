@@ -7,7 +7,11 @@ if ($dirCount == 1) {
     require_once($_SERVER['DOCUMENT_ROOT'] . "/php/unknown.php");
 } elseif ($dirCount == 2) {
     $searchQuery = $dirs[1];
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/php/search.php");
+    if ($searchQuery == "index.php") {
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/php/unknown.php");
+    } else {
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/php/search.php");
+    }
 } else {
     require_once($_SERVER['DOCUMENT_ROOT'] . "/php/unknown.php");
 }
