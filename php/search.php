@@ -5,25 +5,22 @@ if (count(get_included_files()) == 1) {
 require_once($_SERVER['DOCUMENT_ROOT'] . "/php/connect.php");
 
 if (isset($searchQuery)) {
-    $conn->prepare(<<<SQL
-        SELECT HEX(artist_id) as artist_id, artist_name, artist_icon, artist_directory FROM artists WHERE INSTR(artist_name, :search_query) > 0;
-        SELECT HEX(song_id) as song_id, song_title, HEX(songs.artist_id) as artist_id, artist_name, artist_directory, song_cover_image, song_description, song_directory FROM songs JOIN artists on songs.artist_id = artists.artist_id WHERE INSTR(song_title, :search_query) > 0;
-        SELECT HEX(song_id) as song_id, song_title, HEX(songs.artist_id) as artist_id, artist_name, artist_directory, song_cover_image, song_description, song_directory FROM songs JOIN artists on songs.artist_id = artists.artist_id WHERE CHAR_LENGTH(:search_query) > 10 AND INSTR(song_lyrics, :search_query) > 0
-        SQL);
+    $conn->prepare("SELECT HEX(artist_id) as artist_id, artist_name, artist_icon, artist_directory FROM artists WHERE INSTR(artist_name, :search_query) > 0");
     $statement->execute(array("search_query" => $searchQuery));
+    $statement->setFetchMode(PDO::FETCH_ASSOC);
+    $artistResults = $statement->fetchAll();
+    $conn->prepare("SELECT HEX(song_id) as song_id, song_title, HEX(songs.artist_id) as artist_id, artist_name, artist_directory, song_cover_image, song_description, song_directory FROM songs JOIN artists on songs.artist_id = artists.artist_id WHERE INSTR(song_title, :search_query) > 0");
+    $statement->execute(array("search_query" => $searchQuery));
+    $statement->setFetchMode(PDO::FETCH_ASSOC);
+    $songResults = $statement->fetchAll();
+    $conn->prepare("SELECT HEX(song_id) as song_id, song_title, HEX(songs.artist_id) as artist_id, artist_name, artist_directory, song_cover_image, song_description, song_directory FROM songs JOIN artists on songs.artist_id = artists.artist_id WHERE CHAR_LENGTH(:search_query) > 10 AND INSTR(song_lyrics, :search_query) > 0");
+    $statement->execute(array("search_query" => $searchQuery));
+    $statement->setFetchMode(PDO::FETCH_ASSOC);
+    $lyricResults = $statement->fetchAll();
 } else {
     require_once($_SERVER['DOCUMENT_ROOT'] . "/php/unknown.php");
     exit();
 }
-
-$statement->setFetchMode(PDO::FETCH_ASSOC);
-$artistResults = $statement->fetchAll();
-$statement->nextRowset();
-$statement->setFetchMode(PDO::FETCH_ASSOC);
-$songResults = $statement->fetchAll();
-$statement->nextRowset();
-$statement->setFetchMode(PDO::FETCH_ASSOC);
-$lyricResults = $statement->fetchAll();
 ?>
 
 <!DOCTYPE html>
