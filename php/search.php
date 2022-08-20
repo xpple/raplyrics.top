@@ -5,7 +5,7 @@ if (count(get_included_files()) == 1) {
 require_once($_SERVER['DOCUMENT_ROOT'] . "/php/connect.php");
 
 if (isset($searchQuery)) {
-    $searchQuery = urldecode($searchQuery);
+    $searchQuery = rawurldecode($searchQuery);
     $statement = $conn->prepare("SELECT HEX(artist_id) as artist_id, artist_name, artist_icon, artist_directory FROM artists WHERE INSTR(artist_name, :search_query) > 0");
     $statement->execute(array("search_query" => $searchQuery));
     $statement->setFetchMode(PDO::FETCH_ASSOC);
@@ -47,7 +47,7 @@ if (isset($searchQuery)) {
     </nav>
 </header>
 <main>
-    <h1>Search results for "<?= htmlspecialchars(urldecode($searchQuery)) ?>"</h1>
+    <h1>Search results for "<?= htmlspecialchars(rawurldecode($searchQuery)) ?>"</h1>
     <div id="results-container">
         <section id="artist-results" class="results">
             <h2>Artists</h2>

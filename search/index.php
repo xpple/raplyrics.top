@@ -4,7 +4,8 @@ $requestURI = trim($requestURI, '/');
 $dirs = explode('/', $requestURI);
 $dirCount = count($dirs);
 if ($dirCount == 1) {
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/php/unknown.php");
+    $searchQuery = "";
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/php/search.php");
 } elseif ($dirCount == 2) {
     $searchQuery = $dirs[1];
     if ($searchQuery == "index.php") {
