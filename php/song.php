@@ -5,10 +5,10 @@ if (count(get_included_files()) == 1) {
 require_once($_SERVER['DOCUMENT_ROOT'] . "/php/connect.php");
 
 
-if ($songId) {
+if (isset($songId)) {
     $statement = $conn->prepare("SELECT HEX(song_id) as song_id, song_title, HEX(songs.artist_id) as artist_id, artist_name, artist_directory, song_cover_image, song_description, song_lyrics, song_directory FROM songs JOIN artists on songs.artist_id = artists.artist_id WHERE HEX(song_id) = :song_id");
     $statement->execute(array("song_id" => $songId));
-} elseif($artistDirectory and $songDirectory) {
+} elseif(isset($artistDirectory) and isset($songDirectory)) {
     $statement = $conn->prepare("SELECT HEX(song_id) as song_id, song_title, HEX(songs.artist_id) as artist_id, artist_name, artist_directory, song_cover_image, song_description, song_lyrics, song_directory FROM songs JOIN artists on songs.artist_id = artists.artist_id WHERE artist_directory = :artist_directory AND song_directory = :song_directory");
     $statement->execute(array("artist_directory" => $artistDirectory, "song_directory" => $songDirectory));
 } else {
