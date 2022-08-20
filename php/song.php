@@ -23,19 +23,18 @@ if (count($result) != 1) {
     exit();
 }
 $row = $result[0];
-$songTitle = $row["song_title"];
-$artistName = $row["artist_name"];
-$artistDirectory = $row["artist_directory"];
-$songCoverImage = $row["song_cover_image"];
-$songCoverImageBase64 = base64_encode($songCoverImage);
-$songDescription = $row["song_description"];
-$songLyrics = $row["song_lyrics"];
-$songDirectory = $row["song_directory"];
+$songTitle = htmlspecialchars($row["song_title"]);
+$artistName = htmlspecialchars($row["artist_name"]);
+$artistDirectory = htmlspecialchars($row["artist_directory"]);
+$songCoverImageBase64 = base64_encode($row["song_cover_image"]);
+$songDescription = htmlspecialchars($row["song_description"]);
+$songLyrics = $row["song_lyrics"]; // will be escaped later
+$songDirectory = htmlspecialchars($row["song_directory"]);
 
 $statement = $conn->prepare("SELECT annotation_start, annotation_length, annotation, annotation_type FROM annotations WHERE HEX(song_id) = :song_id ORDER BY annotation_start ASC");
 $statement->execute(array("song_id" => $songId));
 $statement->setFetchMode(PDO::FETCH_ASSOC);
-$annotations = $statement->fetchAll();
+$annotations = $statement->fetchAll(); // will be escaped later
 
 
 function applyAnnotations(string $lyrics, array $annotations): string {
@@ -136,9 +135,7 @@ function formatLyrics(string $lyrics): string {
                 ?>
             </div>
             <h1>Lyrics</h1>
-            <?php
-            echo formatLyrics(applyAnnotations($songLyrics, $annotations));
-            ?>
+            <?= htmlspecialchars(formatLyrics(applyAnnotations($songLyrics, $annotations))) ?>
         </div>
         <div id="annotation"></div>
     </section>

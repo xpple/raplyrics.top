@@ -46,17 +46,16 @@ if (isset($searchQuery)) {
     </nav>
 </header>
 <main>
-    <h1>Search results for "<?= $searchQuery ?>"</h1>
+    <h1>Search results for "<?= htmlspecialchars(urldecode($searchQuery)) ?>"</h1>
     <div id="results-container">
         <section id="artist-results" class="results">
             <h2>Artists</h2>
             <div class="card-container">
                 <?php
                 foreach ($artistResults as $artistResult) {
-                    $artistName = $artistResult["artist_name"];
-                    $artistIcon = $artistResult["artist_icon"];
-                    $artistIconBase64 = base64_encode($artistIcon);
-                    $artistDirectory = $artistResult["artist_directory"];
+                    $artistName = htmlspecialchars($artistResult["artist_name"]);
+                    $artistIconBase64 = base64_encode($artistResult["artist_icon"]);
+                    $artistDirectory = htmlspecialchars($artistResult["artist_directory"]); // technically not needed
                     echo(<<<HTML
                         <a href="/artists/$artistDirectory/" class="result-card">
                             <figure>
@@ -74,13 +73,12 @@ if (isset($searchQuery)) {
             <div class="card-container">
                 <?php
                 foreach ($songResults as $songResult) {
-                    $songTitle = $songResult["song_title"];
-                    $artistName = $songResult["artist_name"];
-                    $artistDirectory = $songResult["artist_directory"];
-                    $songCoverImage = $songResult["song_cover_image"];
-                    $songCoverImageBase64 = base64_encode($songCoverImage);
-                    $songDescription = $songResult["song_description"];
-                    $songDirectory = $songResult["song_directory"];
+                    $songTitle = htmlspecialchars($songResult["song_title"]);
+                    $artistName = htmlspecialchars($songResult["artist_name"]);
+                    $artistDirectory = htmlspecialchars($songResult["artist_directory"]);
+                    $songCoverImageBase64 = base64_encode($songResult["song_cover_image"]);
+                    $songDescription = htmlspecialchars($songResult["song_description"]);
+                    $songDirectory = htmlspecialchars($songResult["song_directory"]);
                     echo(<<<HTML
                         <a href="/songs/$artistDirectory/$songDirectory/" class="result-card">
                             <figure>
@@ -99,13 +97,12 @@ if (isset($searchQuery)) {
             <div class="card-container">
                 <?php
                 foreach ($lyricResults as $lyricResult) {
-                    $songTitle = $lyricResult["song_title"];
-                    $artistName = $lyricResult["artist_name"];
-                    $artistDirectory = $lyricResult["artist_directory"];
-                    $songCoverImage = $lyricResult["song_cover_image"];
-                    $songCoverImageBase64 = base64_encode($songCoverImage);
-                    $songDescription = $lyricResult["song_description"];
-                    $songDirectory = $lyricResult["song_directory"];
+                    $songTitle = htmlspecialchars($lyricResult["song_title"]);
+                    $artistName = htmlspecialchars($lyricResult["artist_name"]);
+                    $artistDirectory = htmlspecialchars($lyricResult["artist_directory"]);
+                    $songCoverImageBase64 = base64_encode($lyricResult["song_cover_image"]);
+                    $songDescription = htmlspecialchars($lyricResult["song_description"]);
+                    $songDirectory = htmlspecialchars($lyricResult["song_directory"]);
                     echo(<<<HTML
                         <a href="/songs/$artistDirectory/$songDirectory/" class="result-card">
                             <figure>

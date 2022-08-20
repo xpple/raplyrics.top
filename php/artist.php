@@ -23,9 +23,8 @@ if (count($result) != 1) {
     exit();
 }
 $row = $result[0];
-$artistName = $row["artist_name"];
-$artistIcon = $row["artist_icon"];
-$artistIconBase64 = base64_encode($artistIcon);
+$artistName = htmlspecialchars($row["artist_name"]);
+$artistIconBase64 = base64_encode($row["artist_icon"]);
 ?>
 
 <!DOCTYPE html>
