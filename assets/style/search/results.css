@@ -44,8 +44,7 @@ section.results a.result-card {
 
     text-decoration: none;
     color: black;
-}
-section.results a.result-card {
+
     background-color: white;
 }
 section.results a.result-card figure {
