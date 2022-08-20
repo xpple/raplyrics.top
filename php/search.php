@@ -5,6 +5,7 @@ if (count(get_included_files()) == 1) {
 require_once($_SERVER['DOCUMENT_ROOT'] . "/php/connect.php");
 
 if (isset($searchQuery)) {
+    $searchQuery = urldecode($searchQuery);
     $statement = $conn->prepare("SELECT HEX(artist_id) as artist_id, artist_name, artist_icon, artist_directory FROM artists WHERE INSTR(artist_name, :search_query) > 0");
     $statement->execute(array("search_query" => $searchQuery));
     $statement->setFetchMode(PDO::FETCH_ASSOC);
