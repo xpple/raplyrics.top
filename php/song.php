@@ -28,13 +28,13 @@ $artistName = htmlspecialchars($row["artist_name"]);
 $artistDirectory = htmlspecialchars($row["artist_directory"]);
 $songCoverImageBase64 = base64_encode($row["song_cover_image"]);
 $songDescription = htmlspecialchars($row["song_description"]);
-$songLyrics = $row["song_lyrics"]; // will be escaped later
+$songLyrics = htmlspecialchars($row["song_lyrics"]);
 $songDirectory = htmlspecialchars($row["song_directory"]);
 
 $statement = $conn->prepare("SELECT annotation_start, annotation_length, annotation, annotation_type FROM annotations WHERE HEX(song_id) = :song_id ORDER BY annotation_start ASC");
 $statement->execute(array("song_id" => $songId));
 $statement->setFetchMode(PDO::FETCH_ASSOC);
-$annotations = $statement->fetchAll(); // will be escaped later
+$annotations = $statement->fetchAll();
 
 
 function applyAnnotations(string $lyrics, array $annotations): string {
@@ -47,7 +47,7 @@ function applyAnnotations(string $lyrics, array $annotations): string {
         }
         $annotationStart = $annotationEntry["annotation_start"];
         $annotationLength = $annotationEntry["annotation_length"];
-        $annotation = $annotationEntry["annotation"];
+        $annotation = htmlspecialchars($annotationEntry["annotation"]);
         $annotatedText = substr($result, $annotationStart + $offset, $annotationLength);
         $replacementString = <<<HTML
             <annotated-text>
@@ -135,7 +135,7 @@ function formatLyrics(string $lyrics): string {
                 ?>
             </div>
             <h1>Lyrics</h1>
-            <?= htmlspecialchars(formatLyrics(applyAnnotations($songLyrics, $annotations))) ?>
+            <?= formatLyrics(applyAnnotations($songLyrics, $annotations)) ?>
         </div>
         <div id="annotation"></div>
     </section>
