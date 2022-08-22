@@ -52,6 +52,7 @@ div#content p:is(.intro, .verse, .chorus, .bridge, .outro) {
     border-left-style: solid;
     border-top-left-radius: 1em;
     border-bottom-left-radius: 1em;
+    border-left-color: black;
     padding-left: 1em;
 
     white-space: pre-line;
