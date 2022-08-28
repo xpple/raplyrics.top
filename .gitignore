@@ -5,7 +5,7 @@
 *.iws
 
 # pass
-/login-data.php
+/app/private/login-data.php
 
 ## npm
 #node_modules
