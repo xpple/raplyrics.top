@@ -2,7 +2,7 @@
 if (count(get_included_files()) == 1) {
     exit("Direct access not permitted.");
 }
-require_once($_SERVER['DOCUMENT_ROOT'] . "/php/connect.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "../private/connect.php");
 
 
 if (isset($artistId)) {

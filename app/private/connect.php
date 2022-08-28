@@ -2,7 +2,7 @@
 if (count(get_included_files()) == 1) {
     exit("Direct access not permitted.");
 }
-require_once($_SERVER['DOCUMENT_ROOT'] . "/login-data.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "../private/login-data.php");
 
 
 try {
