@@ -121,6 +121,7 @@ function formatLyrics(string $lyrics): string {
     <section id="lyrics">
         <div id="content">
             <span>Annotations:</span>
+            <noscript>Annotations require JavaScript to work.</noscript>
             <div id="option-container">
                 <?php
                 $options = array("meaning", "stylistic devices", "rhythm");
