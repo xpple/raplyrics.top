@@ -1,41 +1,5 @@
 <?php
-if (count(get_included_files()) == 1) {
-    exit("Direct access not permitted.");
-}
-require_once($_SERVER['DOCUMENT_ROOT'] . "../private/connect.php");
-
-
-if (isset($songId)) {
-    $statement = $conn->prepare("SELECT HEX(song_id) as song_id, song_title, HEX(songs.artist_id) as artist_id, artist_name, artist_directory, song_cover_image, song_description, song_lyrics, song_directory FROM songs JOIN artists on songs.artist_id = artists.artist_id WHERE HEX(song_id) = :song_id");
-    $statement->execute(array("song_id" => $songId));
-} elseif(isset($artistDirectory) and isset($songDirectory)) {
-    $statement = $conn->prepare("SELECT HEX(song_id) as song_id, song_title, HEX(songs.artist_id) as artist_id, artist_name, artist_directory, song_cover_image, song_description, song_lyrics, song_directory FROM songs JOIN artists on songs.artist_id = artists.artist_id WHERE artist_directory = :artist_directory AND song_directory = :song_directory");
-    $statement->execute(array("artist_directory" => $artistDirectory, "song_directory" => $songDirectory));
-} else {
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/php/unknown.php");
-    exit();
-}
-
-$statement->setFetchMode(PDO::FETCH_ASSOC);
-$result = $statement->fetchAll();
-if (count($result) != 1) {
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/php/unknown.php");
-    exit();
-}
-$row = $result[0];
-$songTitle = htmlspecialchars($row["song_title"]);
-$artistName = htmlspecialchars($row["artist_name"]);
-$artistDirectory = htmlspecialchars($row["artist_directory"]);
-$songCoverImageBase64 = base64_encode($row["song_cover_image"]);
-$songDescription = htmlspecialchars($row["song_description"]);
-$songLyrics = htmlspecialchars($row["song_lyrics"]);
-$songDirectory = htmlspecialchars($row["song_directory"]);
-
-$statement = $conn->prepare("SELECT annotation_start, annotation_length, annotation, annotation_type FROM annotations WHERE HEX(song_id) = :song_id ORDER BY annotation_start ASC");
-$statement->execute(array("song_id" => $songId));
-$statement->setFetchMode(PDO::FETCH_ASSOC);
-$annotations = $statement->fetchAll();
-
+extract(get_object_vars($this->song));
 
 function applyAnnotations(string $lyrics, array $annotations): string {
     $result = $lyrics;
@@ -81,13 +45,13 @@ function formatLyrics(string $lyrics): string {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= $artistName ?> - <?= $songTitle ?> | Rap Lyrics Top</title>
+    <title><?= htmlspecialchars($artistName) ?> - <?= htmlspecialchars($songTitle) ?> | Rap Lyrics Top</title>
 
     <link rel="stylesheet" href="/assets/style/main.css">
     <link rel="stylesheet" href="/assets/style/header.css">
     <link rel="stylesheet" href="/assets/style/song/song-info.css">
     <link rel="stylesheet" href="/assets/style/song/lyrics.css">
-    <script src="/assets/script/module.js" type="module" async></script>
+    <script src="/assets/script/annotation.js" type="module" async></script>
 </head>
 <body>
 <header>
@@ -95,8 +59,8 @@ function formatLyrics(string $lyrics): string {
         <ol>
             <li><a href="/">Home</a></li>
             <li><a href="/songs/">Songs</a></li>
-            <li><a href="/artists/<?= $artistDirectory ?>/"><?= $artistName ?></a></li>
-            <li><a href="/songs/<?= $artistDirectory ?>/<?= $songDirectory ?>/"><?= $songTitle ?></a></li>
+            <li><a href="/artists/<?= htmlspecialchars($artistDirectory) ?>/"><?= htmlspecialchars($artistName) ?></a></li>
+            <li><a href="/songs/<?= htmlspecialchars($artistDirectory) ?>/<?= htmlspecialchars($songDirectory) ?>/"><?= htmlspecialchars($songTitle) ?></a></li>
         </ol>
     </nav>
     <nav aria-label="search component">
@@ -110,12 +74,12 @@ function formatLyrics(string $lyrics): string {
 <main>
     <section id="song-info">
         <div id="img-container">
-            <img src="data:image/jpeg;base64,<?= $songCoverImageBase64 ?>" alt="<?= $songTitle ?> by <?= $artistName ?>" width="300px" height="300px">
+            <img src="data:image/jpeg;base64,<?= $songCoverImageBase64 ?>" alt="<?= htmlspecialchars($songTitle) ?> by <?= htmlspecialchars($artistName) ?>" width="300px" height="300px">
         </div>
         <div id="about">
-            <h1><?= $songTitle ?></h1>
-            <h2><?= $artistName ?></h2>
-            <p><?= $songDescription ?></p>
+            <h1><?= htmlspecialchars($songTitle) ?></h1>
+            <h2><?= htmlspecialchars($artistName) ?></h2>
+            <p><?= htmlspecialchars($songDescription) ?></p>
         </div>
     </section>
     <section id="lyrics">
@@ -136,7 +100,7 @@ function formatLyrics(string $lyrics): string {
                 ?>
             </div>
             <h1>Lyrics</h1>
-            <?= formatLyrics(applyAnnotations($songLyrics, $annotations)) ?>
+            <?= formatLyrics(applyAnnotations(htmlspecialchars($songLyrics), $annotations)) ?>
         </div>
         <div id="annotation"></div>
     </section>
