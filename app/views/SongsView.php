@@ -10,6 +10,7 @@
 
     <link rel="stylesheet" href="/assets/style/main.css">
     <link rel="stylesheet" href="/assets/style/header.css">
+    <script src="/assets/script/search.js" type="module" async></script>
 </head>
 <body>
 <header>
@@ -20,7 +21,7 @@
         </ol>
     </nav>
     <nav aria-label="search component">
-        <form role="search" id="search-form" method="post">
+        <form role="search" id="search-form" method="get">
             <label for="search-input">Search</label>
             <input type="text" id="search-input" name="query" placeholder="Search for anything">
             <button type="submit">Search</button>

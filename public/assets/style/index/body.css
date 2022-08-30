@@ -1,0 +1,24 @@
+main {
+    overflow: hidden;
+
+    padding-top: 2em;
+    padding-bottom: 2em;
+
+    background-color: #eaedef;
+}
+section#search {
+    margin: 2em;
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+section#search h2 {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+section#search form#search-form {
+    height: 2em;
+}
+
+section#search form#search-form input {
+    width: 50%;
+}

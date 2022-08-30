@@ -51,6 +51,7 @@ function formatLyrics(string $lyrics): string {
     <link rel="stylesheet" href="/assets/style/header.css">
     <link rel="stylesheet" href="/assets/style/song/song-info.css">
     <link rel="stylesheet" href="/assets/style/song/lyrics.css">
+    <script src="/assets/script/search.js" type="module" async></script>
     <script src="/assets/script/annotation.js" type="module" async></script>
 </head>
 <body>
@@ -64,7 +65,7 @@ function formatLyrics(string $lyrics): string {
         </ol>
     </nav>
     <nav aria-label="search component">
-        <form role="search" id="search-form" method="post">
+        <form role="search" id="search-form" method="get">
             <label for="search-input">Search</label>
             <input type="text" id="search-input" name="query" placeholder="Search for anything">
             <button type="submit">Search</button>

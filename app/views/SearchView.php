@@ -17,7 +17,7 @@ extract(get_object_vars($this->searchResults));
 <body>
 <header>
     <nav aria-label="search component">
-        <form role="search" id="search-form" method="post">
+        <form role="search" id="search-form" method="get">
             <label for="search-input">Search</label>
             <input type="text" id="search-input" name="query" placeholder="Search for anything">
             <button type="submit">Search</button>
