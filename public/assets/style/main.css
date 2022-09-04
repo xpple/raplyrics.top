@@ -4,3 +4,9 @@ html {
     color: #21252a;
     background-color: #f8f9fa;
 }
+body {
+    margin-top: 0;
+}
+input, button {
+    font-size: 17px;
+}

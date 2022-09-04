@@ -15,16 +15,19 @@ class IndexController extends Controller {
         $topDir = array_shift($path);
         switch ($topDir) {
             case "artists":
-                $controller = new ArtistsController($path);
-                $controller->load();
+                (new ArtistsController($path))->load();
                 break;
             case "search":
-                $controller = new SearchController($path);
-                $controller->load();
+                (new SearchController($path))->load();
                 break;
             case "songs":
-                $controller = new SongsController($path);
-                $controller->load();
+                (new SongsController($path))->load();
+                break;
+            case "sign-up":
+                (new SignUpController($path))->load();
+                break;
+            case "sign-in":
+                (new SignInController($path))->load();
                 break;
             default:
                 throw new Exception("Requested directory does not exist.");

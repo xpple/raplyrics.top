@@ -66,4 +66,12 @@ class DatabaseModel {
         }, $lyricResults);
         return new SearchResultsModel($artistResults, $songResults, $lyricResults);
     }
+
+    public function addUser(string $email, string $username, string $password): void {
+        require realpath($_SERVER['DOCUMENT_ROOT'] . "/../app/pepper.php");
+        $password_peppered = hash_hmac("sha256", $password, $pepper);
+        $password_hashed = password_hash($password_peppered, PASSWORD_BCRYPT);
+        $statement = $this->conn->prepare("INSERT INTO users (user_password, user_email, user_name) VALUES (:user_password, :user_email, :user_name)");
+        $statement->execute(array("user_password" => $password_hashed, "user_email" => $email, "user_name" => $username));
+    }
 }

@@ -1,0 +1,29 @@
+fieldset {
+    display: flex;
+    flex-direction: column;
+}
+fieldset :is(label, input) {
+     width: 50%;
+ }
+fieldset label {
+    margin-top: 0.5em;
+}
+fieldset input {
+    margin-bottom: 0.5em;
+}
+fieldset small.error-message {
+    color: red;
+}
+fieldset input:focus + small.error-message {
+    display: none;
+}
+form:invalid button[type=submit] {
+    display: none;
+    pointer-events: none;
+}
+/*
+select label elements succeeded by required input elements and add after pseudo class with " * " as content
+ */
+fieldset button {
+    width: 25%;
+}

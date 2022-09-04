@@ -1,5 +1,4 @@
 <?php
-extract(get_object_vars($this->artist));
 ?>
 
 <!DOCTYPE html>
@@ -7,10 +6,12 @@ extract(get_object_vars($this->artist));
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= htmlspecialchars($artistName) ?> | Rap Lyrics Top</title>
+    <title>Sign In | Rap Lyrics Top</title>
 
     <link rel="stylesheet" href="/assets/style/main.css">
     <link rel="stylesheet" href="/assets/style/header.css">
+    <link rel="stylesheet" href="/assets/style/fieldset.css">
+    <link rel="stylesheet" href="/assets/style/sign-in/body.css">
     <script src="/assets/script/search.js" type="module" async></script>
 </head>
 <body>
@@ -18,8 +19,7 @@ extract(get_object_vars($this->artist));
     <nav aria-label="breadcrumbs">
         <ol>
             <li><a href="/">Home</a></li>
-            <li><a href="/artists/">Artists</a></li>
-            <li><a href="/artists/<?= htmlspecialchars($artistDirectory) ?>/"><?= htmlspecialchars($artistName) ?></a></li>
+            <li><a href="/sign-in/">Sign In</a></li>
         </ol>
     </nav>
     <div class="last-child">
@@ -40,14 +40,18 @@ extract(get_object_vars($this->artist));
     </div>
 </header>
 <main>
-    <section id="artist-info">
-        <div id="img-container">
-            <img src="data:image/jpeg;base64,<?= $songCoverImageBase64 ?>" alt="<?= htmlspecialchars($songTitle) ?> by <?= htmlspecialchars($artistName) ?>" width="300px" height="300px">
-        </div>
-    </section>
-    <section id="songs">
-
-    </section>
+    <div id="form-container">
+        <form action="" method="post">
+            <fieldset>
+                <legend>Sign Up</legend>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="john.smith@example.com">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+                <button type="submit">Sign Up</button>
+            </fieldset>
+        </form>
+    </div>
 </main>
 <footer>
     [Footer]

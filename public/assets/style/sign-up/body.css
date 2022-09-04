@@ -1,0 +1,15 @@
+main {
+    overflow: hidden;
+
+    padding-top: 2em;
+    padding-bottom: 2em;
+
+    background-color: #eaedef;
+}
+div#form-container {
+    width: 500px;
+
+    margin: 0 auto;
+    padding-top: 2em;
+    padding-bottom: 2em;
+}

@@ -20,13 +20,22 @@
             <li><a href="/artists/">Artists</a></li>
         </ol>
     </nav>
-    <nav aria-label="search component">
-        <form role="search" id="search-form" method="get">
-            <label for="search-input">Search</label>
-            <input type="text" id="search-input" name="query" placeholder="Search for anything">
-            <button type="submit">Search</button>
-        </form>
-    </nav>
+    <div class="last-child">
+        <nav aria-label="search component">
+            <form role="search" id="search-form" method="get">
+                <label for="search-input">Search</label>
+                <input type="text" id="search-input" name="query" placeholder="Search for anything">
+                <button type="submit">Search</button>
+            </form>
+        </nav>
+
+        <div id="sign-up" class="login">
+            <a href="/sign-up/">Sign Up</a>
+        </div>
+        <div id="sign-in" class="login">
+            <a href="/sign-in/">Sign In</a>
+        </div>
+    </div>
 </header>
 <main>
 

@@ -1,6 +1,12 @@
 header {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+}
+div.last-child {
+    margin-left: auto;
 }
 nav {
     padding: 1em;
@@ -19,8 +25,10 @@ nav ol li:not(:last-child)::after {
     padding-left: 5px;
 }
 nav form {
-    display: flex;
     height: 1.5em;
+
+    display: flex;
+    align-items: center;
 }
 nav form label {
     display: none;
@@ -28,14 +36,31 @@ nav form label {
 nav form input {
     padding: 0;
     border: none;
-    font-size: 17px;
 }
 nav form button {
     margin: 0;
     padding: 0 1em;
     border: none;
-    font-size: 17px;
 }
 nav form button:hover {
     cursor: pointer;
+}
+div.last-child {
+    display: flex;
+    align-items: center;
+}
+div.last-child nav {
+    border-right-style: solid;
+    border-right-width: thin;
+}
+div.last-child div.login {
+    padding: 1em;
+    margin-left: 1em;
+
+    background-color: #dee2e6;
+    border-radius: 50% 10% 50% 10%;
+}
+div.last-child div.user {
+    padding: 1em;
+    margin-left: 1em;
 }

@@ -4,11 +4,6 @@
 *.ipr
 *.iws
 
-# pass
+# secret
 /app/login-data.php
-
-## npm
-#node_modules
-#
-## compile target
-#*.js
+/app/pepper.php
