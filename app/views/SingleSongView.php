@@ -47,12 +47,12 @@ function formatLyrics(string $lyrics): string {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= htmlspecialchars($artistName) ?> - <?= htmlspecialchars($songTitle) ?> | Rap Lyrics Top</title>
 
-    <link rel="stylesheet" href="/assets/style/main.css">
-    <link rel="stylesheet" href="/assets/style/header.css">
-    <link rel="stylesheet" href="/assets/style/song/song-info.css">
-    <link rel="stylesheet" href="/assets/style/song/lyrics.css">
-    <script src="/assets/script/search.js" type="module" async></script>
-    <script src="/assets/script/annotation.js" type="module" async></script>
+    <link rel="stylesheet" href="/public/assets/style/main.css">
+    <link rel="stylesheet" href="/public/assets/style/header.css">
+    <link rel="stylesheet" href="/public/assets/style/song/song-info.css">
+    <link rel="stylesheet" href="/public/assets/style/song/lyrics.css">
+    <script src="/public/assets/script/search.js" type="module" async></script>
+    <script src="/public/assets/script/annotation.js" type="module" async></script>
 </head>
 <body>
 <header>

@@ -13,7 +13,7 @@ class SongsController extends Controller {
     public function load(): void {
         $path = $this->getPath();
         if (count($path) == 0) {
-            require realpath($_SERVER['DOCUMENT_ROOT'] . "/../app/views/SongsView.php");
+            require realpath($_SERVER['DOCUMENT_ROOT'] . "/app/views/SongsView.php");
             return;
         }
         $artistDirectory = array_shift($path);
@@ -25,7 +25,7 @@ class SongsController extends Controller {
         if (count($path) == 0) {
             $model = new DatabaseModel();
             $this->song = $model->getSong($artistDirectory, $songDirectory);
-            require realpath($_SERVER['DOCUMENT_ROOT'] . "/../app/views/SingeSongView.php");
+            require realpath($_SERVER['DOCUMENT_ROOT'] . "/app/views/SingeSongView.php");
             return;
         }
         throw new Exception("Requested directory does not exist.");

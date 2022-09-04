@@ -11,7 +11,7 @@ class DatabaseModel {
 
     public function __construct() {
         try {
-            require realpath($_SERVER['DOCUMENT_ROOT'] . "/../app/login-data.php");
+            require realpath($_SERVER['DOCUMENT_ROOT'] . "/app/login-data.php");
             $conn = new PDO("mysql:host=$server;port=$port;dbname=$dbname;charset=UTF8", $user, $pass);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_NUM);
@@ -68,7 +68,7 @@ class DatabaseModel {
     }
 
     public function addUser(string $email, string $username, string $password): void {
-        require realpath($_SERVER['DOCUMENT_ROOT'] . "/../app/pepper.php");
+        require realpath($_SERVER['DOCUMENT_ROOT'] . "/app/pepper.php");
         $password_peppered = hash_hmac("sha256", $password, $pepper);
         $password_hashed = password_hash($password_peppered, PASSWORD_BCRYPT);
         $statement = $this->conn->prepare("INSERT INTO users (user_password, user_email, user_name) VALUES (:user_password, :user_email, :user_name)");

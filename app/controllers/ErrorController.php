@@ -9,7 +9,7 @@ class ErrorController extends Controller {
     private Exception $cause;
 
     public function load(): void {
-        require realpath($_SERVER['DOCUMENT_ROOT'] . "/../app/views/ErrorView.php");
+        require realpath($_SERVER['DOCUMENT_ROOT'] . "/app/views/ErrorView.php");
     }
 
     public function setCause(Exception $cause) {
