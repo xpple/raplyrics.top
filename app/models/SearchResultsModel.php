@@ -4,9 +4,9 @@ namespace App\Models;
 
 class SearchResultsModel {
 
-    public readonly array $artistResults;
-    public readonly array $songResults;
-    public readonly array $lyricResults;
+    private readonly array $artistResults;
+    private readonly array $songResults;
+    private readonly array $lyricResults;
 
     /**
      * @param ArtistModel[] $artistResults
@@ -17,5 +17,17 @@ class SearchResultsModel {
         $this->artistResults = $artistResults;
         $this->songResults = $songResults;
         $this->lyricResults = $lyricResults;
+    }
+
+    public function getArtistResults(): array {
+        return $this->artistResults;
+    }
+
+    public function getSongResults(): array {
+        return $this->songResults;
+    }
+
+    public function getLyricResults(): array {
+        return $this->lyricResults;
     }
 }

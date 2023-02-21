@@ -11,10 +11,10 @@ class DatabaseModel {
 
     public function __construct() {
         try {
-            require realpath($_SERVER['DOCUMENT_ROOT'] . "/app/login-data.php");
-            $conn = new PDO("mysql:host=$server;port=$port;dbname=$dbname;charset=UTF8", $user, $pass);
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_NUM);
+            require realpath($_SERVER['DOCUMENT_ROOT'] . "/../app/login-data.php");
+            $this->conn = new PDO("mysql:host=$server;port=$port;dbname=$dbname;charset=UTF8", $user, $pass);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_NUM);
         } catch (PDOException) {
             die("Connection error.");
         }
@@ -44,6 +44,19 @@ class DatabaseModel {
         return new SongModel(...$songEntry);
     }
 
+    /**
+     * @return AnnotationModel[]
+     */
+    public function getAnnotations(string $songId): array {
+        $statement = $this->conn->prepare("SELECT annotation_id, song_id, annotation_start, annotation_length, annotation, annotation_type FROM annotations WHERE HEX(song_id) = :song_id ORDER BY annotation_start");
+        $statement->execute(array("song_id" => $songId));
+        $annotationResults = $statement->fetchAll();
+
+        return array_map(function ($annotationEntry) {
+            return new AnnotationModel(...$annotationEntry);
+        }, $annotationResults);
+    }
+
     public function getSearchResults(string $searchQuery): SearchResultsModel {
         $searchQuery = rawurldecode($searchQuery);
         $statement = $this->conn->prepare("SELECT HEX(artist_id) as artist_id, artist_name, artist_icon, artist_directory FROM artists WHERE INSTR(artist_name, :search_query) > 0");
@@ -68,7 +81,7 @@ class DatabaseModel {
     }
 
     public function addUser(string $email, string $username, string $password): void {
-        require realpath($_SERVER['DOCUMENT_ROOT'] . "/app/pepper.php");
+        require realpath($_SERVER['DOCUMENT_ROOT'] . "/../app/pepper.php");
         $password_peppered = hash_hmac("sha256", $password, $pepper);
         $password_hashed = password_hash($password_peppered, PASSWORD_BCRYPT);
         $statement = $this->conn->prepare("INSERT INTO users (user_password, user_email, user_name) VALUES (:user_password, :user_email, :user_name)");

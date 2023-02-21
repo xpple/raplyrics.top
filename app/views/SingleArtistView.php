@@ -1,5 +1,7 @@
 <?php
-extract(get_object_vars($this->artist));
+use App\Models\ArtistModel;
+/* @var $artist ArtistModel */
+$artist = $this->artist;
 ?>
 
 <!DOCTYPE html>
@@ -7,11 +9,11 @@ extract(get_object_vars($this->artist));
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= htmlspecialchars($artistName) ?> | Rap Lyrics Top</title>
+    <title><?= htmlspecialchars($artist->getArtistName()) ?> | Rap Lyrics Top</title>
 
-    <link rel="stylesheet" href="/public/assets/style/main.css">
-    <link rel="stylesheet" href="/public/assets/style/header.css">
-    <script src="/public/assets/script/search.js" type="module" async></script>
+    <link rel="stylesheet" href="/assets/style/main.css">
+    <link rel="stylesheet" href="/assets/style/header.css">
+    <script src="/assets/script/search.js" type="module" async></script>
 </head>
 <body>
 <header>
@@ -19,7 +21,7 @@ extract(get_object_vars($this->artist));
         <ol>
             <li><a href="/">Home</a></li>
             <li><a href="/artists/">Artists</a></li>
-            <li><a href="/artists/<?= htmlspecialchars($artistDirectory) ?>/"><?= htmlspecialchars($artistName) ?></a></li>
+            <li><a href="/artists/<?= htmlspecialchars($artist->getArtistDirectory()) ?>/"><?= htmlspecialchars($artist->getArtistName()) ?></a></li>
         </ol>
     </nav>
     <div class="last-child">
@@ -42,7 +44,6 @@ extract(get_object_vars($this->artist));
 <main>
     <section id="artist-info">
         <div id="img-container">
-            <img src="data:image/jpeg;base64,<?= $songCoverImageBase64 ?>" alt="<?= htmlspecialchars($songTitle) ?> by <?= htmlspecialchars($artistName) ?>" width="300px" height="300px">
         </div>
     </section>
     <section id="songs">

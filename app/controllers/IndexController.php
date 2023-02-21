@@ -9,7 +9,7 @@ class IndexController extends Controller {
     public function load(): void {
         $path = $this->getPath();
         if (count($path) == 0) {
-            require realpath($_SERVER['DOCUMENT_ROOT'] . "/app/views/IndexView.php");
+            require realpath($_SERVER['DOCUMENT_ROOT'] . "/../app/views/IndexView.php");
             return;
         }
         $topDir = array_shift($path);

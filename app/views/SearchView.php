@@ -1,5 +1,7 @@
 <?php
-extract(get_object_vars($this->searchResults));
+use App\Models\SearchResultsModel;
+/* @var $searchResults SearchResultsModel */
+$searchResults = $this->searchResults
 ?>
 
 <!DOCTYPE html>
@@ -9,10 +11,10 @@ extract(get_object_vars($this->searchResults));
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Search | Rap Lyrics Top</title>
 
-    <link rel="stylesheet" href="/public/assets/style/main.css">
-    <link rel="stylesheet" href="/public/assets/style/search/search-bar.css">
-    <link rel="stylesheet" href="/public/assets/style/search/results.css">
-    <script src="/public/assets/script/search.js" type="module" async></script>
+    <link rel="stylesheet" href="/assets/style/main.css">
+    <link rel="stylesheet" href="/assets/style/search/search-bar.css">
+    <link rel="stylesheet" href="/assets/style/search/results.css">
+    <script src="/assets/script/search.js" type="module" async></script>
 </head>
 <body>
 <header>
@@ -39,7 +41,7 @@ extract(get_object_vars($this->searchResults));
             <h2>Artists</h2>
             <div class="card-container">
                 <?php
-                foreach ($artistResults as $artist) {
+                foreach ($searchResults->getArtistResults() as $artist) {
                     $artistName = htmlspecialchars($artist->getArtistName());
                     $artistIconBase64 = base64_encode($artist->getArtistIcon());
                     $artistDirectory = htmlspecialchars($artist->getArtistDirectory());
@@ -59,7 +61,7 @@ extract(get_object_vars($this->searchResults));
             <h2>Songs</h2>
             <div class="card-container">
                 <?php
-                foreach ($songResults as $song) {
+                foreach ($searchResults->getSongResults() as $song) {
                     $songTitle = htmlspecialchars($song->getSongTitle());
                     $artistName = htmlspecialchars($song->getArtistName());
                     $artistDirectory = htmlspecialchars($song->getArtistDirectory());
@@ -83,7 +85,7 @@ extract(get_object_vars($this->searchResults));
             <h2>Lyrics</h2>
             <div class="card-container">
                 <?php
-                foreach ($lyricResults as $lyrics) {
+                foreach ($searchResults->getLyricResults() as $lyrics) {
                     $songTitle = htmlspecialchars($lyrics->getSongTitle());
                     $artistName = htmlspecialchars($lyrics->getArtistName());
                     $artistDirectory = htmlspecialchars($lyrics->getArtistDirectory());
