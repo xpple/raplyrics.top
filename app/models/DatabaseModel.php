@@ -52,9 +52,7 @@ class DatabaseModel {
         $statement->execute(array("song_id" => $songId));
         $annotationResults = $statement->fetchAll();
 
-        return array_map(function ($annotationEntry) {
-            return new AnnotationModel(...$annotationEntry);
-        }, $annotationResults);
+        return array_map(fn($annotationEntry) => new AnnotationModel(...$annotationEntry), $annotationResults);
     }
 
     public function getSearchResults(string $searchQuery): SearchResultsModel {
@@ -68,15 +66,9 @@ class DatabaseModel {
         $statement = $this->conn->prepare("SELECT HEX(song_id) as song_id, song_title, HEX(songs.artist_id) as artist_id, artist_name, artist_directory, song_cover_image, song_description, song_lyrics, song_directory FROM songs JOIN artists on songs.artist_id = artists.artist_id WHERE CHAR_LENGTH(:search_query) > 5 AND INSTR(song_lyrics, :search_query) > 0");
         $statement->execute(array("search_query" => $searchQuery));
         $lyricResults = $statement->fetchAll();
-        $artistResults = array_map(function ($artistEntry) {
-            return new ArtistModel(...$artistEntry);
-        }, $artistResults);
-        $songResults = array_map(function ($songEntry) {
-            return new SongModel(...$songEntry);
-        }, $songResults);
-        $lyricResults = array_map(function ($lyricEntry) {
-            return new SongModel(...$lyricEntry);
-        }, $lyricResults);
+        $artistResults = array_map(fn($artistEntry) => new ArtistModel(...$artistEntry), $artistResults);
+        $songResults = array_map(fn($songEntry) => new SongModel(...$songEntry), $songResults);
+        $lyricResults = array_map(fn($lyricEntry) => new SongModel(...$lyricEntry), $lyricResults);
         return new SearchResultsModel($artistResults, $songResults, $lyricResults);
     }
 
