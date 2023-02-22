@@ -37,7 +37,7 @@
         if ($username = $_SESSION["username"] ?? false) {
             echo(<<<HTML
                 <div id="username" class="user">
-                    Welcome, $username
+                    Welcome, {$username}
                 </div>
                 <div id="account" class="user">
                     Account

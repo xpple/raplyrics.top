@@ -13,7 +13,7 @@ class SearchResultsModel {
      * @param SongModel[] $songResults
      * @param SongModel[] $lyricResults
      */
-    public function __construct(array $artistResults = array(), array $songResults = array(), array $lyricResults = array()) {
+    public function __construct(array $artistResults = [], array $songResults = [], array $lyricResults = []) {
         $this->artistResults = $artistResults;
         $this->songResults = $songResults;
         $this->lyricResults = $lyricResults;
