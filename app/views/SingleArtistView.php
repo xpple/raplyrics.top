@@ -9,7 +9,7 @@ $artist = $this->artist;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= htmlspecialchars($artist->getArtistName()) ?> | Rap Lyrics Top</title>
+    <title><?= htmlspecialchars($artist->artistName) ?> | Rap Lyrics Top</title>
 
     <link rel="stylesheet" href="/assets/style/main.css">
     <link rel="stylesheet" href="/assets/style/header.css">
@@ -21,7 +21,7 @@ $artist = $this->artist;
         <ol>
             <li><a href="/">Home</a></li>
             <li><a href="/artists/">Artists</a></li>
-            <li><a href="/artists/<?= htmlspecialchars($artist->getArtistDirectory()) ?>/"><?= htmlspecialchars($artist->getArtistName()) ?></a></li>
+            <li><a href="/artists/<?= htmlspecialchars($artist->artistDirectory) ?>/"><?= htmlspecialchars($artist->artistName) ?></a></li>
         </ol>
     </nav>
     <div class="last-child">

@@ -26,7 +26,7 @@ class SongsController extends Controller {
         if (count($path) == 0) {
             $model = new DatabaseModel();
             $this->song = $model->getSong($artistDirectory, $songDirectory);
-            $this->annotations = $model->getAnnotations($this->song->getSongId());
+            $this->annotations = $model->getAnnotations($this->song->songId);
             require dirname($_SERVER['DOCUMENT_ROOT']) . "/app/views/SingleSongView.php";
             return;
         }

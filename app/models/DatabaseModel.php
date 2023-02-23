@@ -5,9 +5,9 @@ namespace App\Models;
 use PDO;
 use PDOException;
 
-class DatabaseModel {
+readonly class DatabaseModel {
 
-    private readonly PDO $conn;
+    private PDO $conn;
 
     public function __construct() {
         try {

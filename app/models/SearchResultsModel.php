@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-class SearchResultsModel {
+readonly class SearchResultsModel {
 
-    private readonly array $artistResults;
-    private readonly array $songResults;
-    private readonly array $lyricResults;
+    public array $artistResults;
+    public array $songResults;
+    public array $lyricResults;
 
     /**
      * @param ArtistModel[] $artistResults
@@ -17,17 +17,5 @@ class SearchResultsModel {
         $this->artistResults = $artistResults;
         $this->songResults = $songResults;
         $this->lyricResults = $lyricResults;
-    }
-
-    public function getArtistResults(): array {
-        return $this->artistResults;
-    }
-
-    public function getSongResults(): array {
-        return $this->songResults;
-    }
-
-    public function getLyricResults(): array {
-        return $this->lyricResults;
     }
 }

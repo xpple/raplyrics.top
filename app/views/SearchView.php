@@ -41,10 +41,10 @@ $searchResults = $this->searchResults
             <h2>Artists</h2>
             <div class="card-container">
                 <?php
-                foreach ($searchResults->getArtistResults() as $artist) {
-                    $artistName = htmlspecialchars($artist->getArtistName());
-                    $artistIconBase64 = base64_encode($artist->getArtistIcon());
-                    $artistDirectory = htmlspecialchars($artist->getArtistDirectory());
+                foreach ($searchResults->artistResults as $artist) {
+                    $artistName = htmlspecialchars($artist->artistName);
+                    $artistIconBase64 = base64_encode($artist->artistIcon);
+                    $artistDirectory = htmlspecialchars($artist->artistDirectory);
                     echo(<<<HTML
                         <a href="/artists/{$artistDirectory}/" class="result-card">
                             <figure>
@@ -61,13 +61,13 @@ $searchResults = $this->searchResults
             <h2>Songs</h2>
             <div class="card-container">
                 <?php
-                foreach ($searchResults->getSongResults() as $song) {
-                    $songTitle = htmlspecialchars($song->getSongTitle());
-                    $artistName = htmlspecialchars($song->getArtistName());
-                    $artistDirectory = htmlspecialchars($song->getArtistDirectory());
-                    $songCoverImageBase64 = base64_encode($song->getSongCoverImage());
-                    $songDescription = htmlspecialchars($song->getSongDescription());
-                    $songDirectory = htmlspecialchars($song->getSongDirectory());
+                foreach ($searchResults->songResults as $song) {
+                    $songTitle = htmlspecialchars($song->songTitle);
+                    $artistName = htmlspecialchars($song->artistName);
+                    $artistDirectory = htmlspecialchars($song->artistDirectory);
+                    $songCoverImageBase64 = base64_encode($song->songCoverImage);
+                    $songDescription = htmlspecialchars($song->songDescription);
+                    $songDirectory = htmlspecialchars($song->songDirectory);
                     echo(<<<HTML
                         <a href="/songs/{$artistDirectory}/{$songDirectory}/" class="result-card">
                             <figure>
@@ -85,13 +85,13 @@ $searchResults = $this->searchResults
             <h2>Lyrics</h2>
             <div class="card-container">
                 <?php
-                foreach ($searchResults->getLyricResults() as $lyrics) {
-                    $songTitle = htmlspecialchars($lyrics->getSongTitle());
-                    $artistName = htmlspecialchars($lyrics->getArtistName());
-                    $artistDirectory = htmlspecialchars($lyrics->getArtistDirectory());
-                    $songCoverImageBase64 = base64_encode($lyrics->getSongCoverImage());
-                    $songDescription = htmlspecialchars($lyrics->getSongDescription());
-                    $songDirectory = htmlspecialchars($lyrics->getSongDirectory());
+                foreach ($searchResults->lyricResults as $lyrics) {
+                    $songTitle = htmlspecialchars($lyrics->songTitle);
+                    $artistName = htmlspecialchars($lyrics->artistName);
+                    $artistDirectory = htmlspecialchars($lyrics->artistDirectory);
+                    $songCoverImageBase64 = base64_encode($lyrics->songCoverImage);
+                    $songDescription = htmlspecialchars($lyrics->songDescription);
+                    $songDirectory = htmlspecialchars($lyrics->songDirectory);
                     echo(<<<HTML
                         <a href="/songs/{$artistDirectory}/{$songDirectory}/" class="result-card">
                             <figure>

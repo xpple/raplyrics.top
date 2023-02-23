@@ -14,12 +14,12 @@ function applyAnnotations(string $lyrics, array $annotations): string {
     $offset = 0;
     $annotationType = $_GET["annotationType"] ?? "meaning";
     foreach ($annotations as $annotationEntry) {
-        if ($annotationEntry->getAnnotationType() != $annotationType) {
+        if ($annotationEntry->annotationType != $annotationType) {
             continue;
         }
-        $annotationStart = $annotationEntry->getAnnotationStart();
-        $annotationLength = $annotationEntry->getAnnotationLength();
-        $annotation = htmlspecialchars($annotationEntry->getAnnotation());
+        $annotationStart = $annotationEntry->annotationStart;
+        $annotationLength = $annotationEntry->annotationLength;
+        $annotation = htmlspecialchars($annotationEntry->annotation);
         $annotatedText = substr($result, $annotationStart + $offset, $annotationLength);
         $replacementString = <<<HTML
             <annotated-text>
@@ -53,7 +53,7 @@ function formatLyrics(string $lyrics): string {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= htmlspecialchars($song->getArtistName()) ?> - <?= htmlspecialchars($song->getSongTitle()) ?> | Rap Lyrics Top</title>
+    <title><?= htmlspecialchars($song->artistName) ?> - <?= htmlspecialchars($song->songTitle) ?> | Rap Lyrics Top</title>
 
     <link rel="stylesheet" href="/assets/style/main.css">
     <link rel="stylesheet" href="/assets/style/header.css">
@@ -68,8 +68,8 @@ function formatLyrics(string $lyrics): string {
         <ol>
             <li><a href="/">Home</a></li>
             <li><a href="/songs/">Songs</a></li>
-            <li><a href="/artists/<?= htmlspecialchars($song->getArtistDirectory()) ?>/"><?= htmlspecialchars($song->getArtistName()) ?></a></li>
-            <li><a href="/songs/<?= htmlspecialchars($song->getArtistDirectory()) ?>/<?= htmlspecialchars($song->getSongDirectory()) ?>/"><?= htmlspecialchars($song->getSongTitle()) ?></a></li>
+            <li><a href="/artists/<?= htmlspecialchars($song->artistDirectory) ?>/"><?= htmlspecialchars($song->artistName) ?></a></li>
+            <li><a href="/songs/<?= htmlspecialchars($song->artistDirectory) ?>/<?= htmlspecialchars($song->songDirectory) ?>/"><?= htmlspecialchars($song->songTitle) ?></a></li>
         </ol>
     </nav>
     <div class="last-child">
@@ -92,12 +92,12 @@ function formatLyrics(string $lyrics): string {
 <main>
     <section id="song-info">
         <div id="img-container">
-            <img src="data:image/jpeg;base64,<?= base64_encode($song->getSongCoverImage()) ?>" alt="<?= htmlspecialchars($song->getSongTitle()) ?> by <?= htmlspecialchars($song->getArtistName()) ?>" width="300px" height="300px">
+            <img src="data:image/jpeg;base64,<?= base64_encode($song->songCoverImage) ?>" alt="<?= htmlspecialchars($song->songTitle) ?> by <?= htmlspecialchars($song->artistName) ?>" width="300px" height="300px">
         </div>
         <div id="about">
-            <h1><?= htmlspecialchars($song->getSongTitle()) ?></h1>
-            <h2><?= htmlspecialchars($song->getArtistName()) ?></h2>
-            <p><?= htmlspecialchars($song->getSongDescription()) ?></p>
+            <h1><?= htmlspecialchars($song->songTitle) ?></h1>
+            <h2><?= htmlspecialchars($song->artistName) ?></h2>
+            <p><?= htmlspecialchars($song->songDescription) ?></p>
         </div>
     </section>
     <section id="lyrics">
@@ -118,7 +118,7 @@ function formatLyrics(string $lyrics): string {
                 ?>
             </div>
             <h1>Lyrics</h1>
-            <?= formatLyrics(applyAnnotations(htmlspecialchars($song->getSongLyrics()), $annotations)) ?>
+            <?= formatLyrics(applyAnnotations(htmlspecialchars($song->songLyrics), $annotations)) ?>
         </div>
         <div id="annotation"></div>
     </section>
