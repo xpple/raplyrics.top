@@ -3,8 +3,9 @@ import {AnnotationManager} from "../../annotation/AnnotationManager.js";
 const template = document.createElement('template');
 template.innerHTML = `
 <style>
-    ::slotted(*) {
+    ::slotted(mark) {
         cursor: pointer;
+        white-space: pre-line;
     }
     :host {
         white-space: normal;
