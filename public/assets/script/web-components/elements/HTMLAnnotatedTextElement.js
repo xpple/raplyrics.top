@@ -3,11 +3,14 @@ import {AnnotationManager} from "../../annotation/AnnotationManager.js";
 const template = document.createElement('template');
 template.innerHTML = `
 <style>
-    #text {
+    ::slotted(*) {
         cursor: pointer;
     }
+    :host {
+        white-space: normal;
+    }
 </style>
-<mark id="text" part="text"><slot name="text"></slot></mark>`
+<slot name="text"></slot>`
 
 export class HTMLAnnotatedTextElement extends HTMLElement {
 
@@ -20,13 +23,13 @@ export class HTMLAnnotatedTextElement extends HTMLElement {
     }
 
     connectedCallback() {
-        this.shadowRoot.getElementById("text").addEventListener('click', () => {
+        this.addEventListener('click', () => {
             AnnotationManager.setAnnotation(this.querySelector("template").innerHTML);
         });
     }
 
     disconnectedCallback() {
-        this.shadowRoot.getElementById("text").removeEventListener('click', () => {
+        this.removeEventListener('click', () => {
             AnnotationManager.setAnnotation(this.querySelector("template").innerHTML);
         });
     }

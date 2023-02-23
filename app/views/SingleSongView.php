@@ -23,7 +23,7 @@ function applyAnnotations(string $lyrics, array $annotations): string {
         $annotatedText = substr($result, $annotationStart + $offset, $annotationLength);
         $replacementString = <<<HTML
             <annotated-text>
-                <span slot="text">{$annotatedText}</span>
+                <mark slot="text">{$annotatedText}</mark>
                 <template>{$annotation}</template>
             </annotated-text>
             HTML;
