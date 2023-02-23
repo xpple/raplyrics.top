@@ -16,11 +16,11 @@ class SignUpController extends Controller {
             throw new Exception("Requested directory does not exist.");
         }
         if (count($_POST) == 0) {
-            require realpath($_SERVER['DOCUMENT_ROOT'] . "/../app/views/SignUpView.php");
+            require dirname($_SERVER['DOCUMENT_ROOT']) . "/app/views/SignUpView.php";
             return;
         }
         $this->errorMessage = self::getPostRequestError();
-        if (is_null($this->errorMessage)) {
+        if ($this->errorMessage === null) {
             try {
                 $model = new DatabaseModel();
                 $model->addUser($_POST["email"], $_POST["username"], $_POST["password"]);
@@ -29,9 +29,9 @@ class SignUpController extends Controller {
             }
             session_start();
             $_SESSION["username"] = $_POST["username"];
-            require realpath($_SERVER['DOCUMENT_ROOT'] . "/../app/views/IndexView.php");
+            require dirname($_SERVER['DOCUMENT_ROOT']) . "/app/views/IndexView.php";
         } else {
-            require realpath($_SERVER['DOCUMENT_ROOT'] . "/../app/views/SignUpView.php");
+            require dirname($_SERVER['DOCUMENT_ROOT']) . "/app/views/SignUpView.php";
         }
     }
 

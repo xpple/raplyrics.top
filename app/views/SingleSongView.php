@@ -23,8 +23,8 @@ function applyAnnotations(string $lyrics, array $annotations): string {
         $annotatedText = substr($result, $annotationStart + $offset, $annotationLength);
         $replacementString = <<<HTML
             <annotated-text>
-                <span slot="text">$annotatedText</span>
-                <template>$annotation</template>
+                <span slot="text">{$annotatedText}</span>
+                <template>{$annotation}</template>
             </annotated-text>
             HTML;
         $result = substr_replace($result, $replacementString, $annotationStart + $offset, $annotationLength);
@@ -110,8 +110,8 @@ function formatLyrics(string $lyrics): string {
                 foreach ($options as $option) {
                     $class = ($_GET["annotationType"] ?? "meaning") == $option ? " active" : "";
                     echo(<<<HTML
-                    <div class="option$class">
-                        <span>$option</span>
+                    <div class="option{$class}">
+                        <span>{$option}</span>
                     </div>
                     HTML);
                 }

@@ -46,10 +46,10 @@ $searchResults = $this->searchResults
                     $artistIconBase64 = base64_encode($artist->getArtistIcon());
                     $artistDirectory = htmlspecialchars($artist->getArtistDirectory());
                     echo(<<<HTML
-                        <a href="/artists/$artistDirectory/" class="result-card">
+                        <a href="/artists/{$artistDirectory}/" class="result-card">
                             <figure>
-                                <figcaption>$artistName</figcaption>
-                                <img src="data:image/jpeg;base64,$artistIconBase64" alt="Artist icon of $artistName">
+                                <figcaption>{$artistName}</figcaption>
+                                <img src="data:image/jpeg;base64,{$artistIconBase64}" alt="Artist icon of {$artistName}">
                             </figure>
                         </a>
                         HTML);
@@ -69,12 +69,12 @@ $searchResults = $this->searchResults
                     $songDescription = htmlspecialchars($song->getSongDescription());
                     $songDirectory = htmlspecialchars($song->getSongDirectory());
                     echo(<<<HTML
-                        <a href="/songs/$artistDirectory/$songDirectory/" class="result-card">
+                        <a href="/songs/{$artistDirectory}/{$songDirectory}/" class="result-card">
                             <figure>
-                                <figcaption>$songTitle</figcaption>
-                                <img src="data:image/jpeg;base64,$songCoverImageBase64" alt="$songTitle by $artistName">
+                                <figcaption>{$songTitle}</figcaption>
+                                <img src="data:image/jpeg;base64,{$songCoverImageBase64}" alt="{$songTitle} by {$artistName}">
                             </figure>
-                            <span>$songDescription</span>
+                            <span>{$songDescription}</span>
                         </a>
                         HTML);
                 }
@@ -93,12 +93,12 @@ $searchResults = $this->searchResults
                     $songDescription = htmlspecialchars($lyrics->getSongDescription());
                     $songDirectory = htmlspecialchars($lyrics->getSongDirectory());
                     echo(<<<HTML
-                        <a href="/songs/$artistDirectory/$songDirectory/" class="result-card">
+                        <a href="/songs/{$artistDirectory}/{$songDirectory}/" class="result-card">
                             <figure>
-                                <figcaption>$songTitle</figcaption>
-                                <img src="data:image/jpeg;base64,$songCoverImageBase64" alt="$songTitle by $artistName">
+                                <figcaption>{$songTitle}</figcaption>
+                                <img src="data:image/jpeg;base64,{$songCoverImageBase64}" alt="{$songTitle} by {$artistName}">
                             </figure>
-                            <span>$songDescription</span>
+                            <span>{$songDescription}</span>
                         </a>
                         HTML);
                 }

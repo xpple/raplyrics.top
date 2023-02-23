@@ -11,8 +11,8 @@ class DatabaseModel {
 
     public function __construct() {
         try {
-            require realpath($_SERVER['DOCUMENT_ROOT'] . "/../app/login-data.php");
-            $this->conn = new PDO("mysql:host=$server;port=$port;dbname=$dbname;charset=UTF8", $user, $pass);
+            require dirname($_SERVER['DOCUMENT_ROOT']) . "/app/login-data.php";
+            $this->conn = new PDO("mysql:host={$server};port={$port};dbname={$dbname};charset=UTF8", $user, $pass);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_NUM);
         } catch (PDOException) {
@@ -52,7 +52,7 @@ class DatabaseModel {
         $statement->execute(array("song_id" => $songId));
         $annotationResults = $statement->fetchAll();
 
-        return array_map(fn($annotationEntry) => new AnnotationModel(...$annotationEntry), $annotationResults);
+        return array_map(static fn($annotationEntry) => new AnnotationModel(...$annotationEntry), $annotationResults);
     }
 
     public function getSearchResults(string $searchQuery): SearchResultsModel {
@@ -66,14 +66,14 @@ class DatabaseModel {
         $statement = $this->conn->prepare("SELECT HEX(song_id) as song_id, song_title, HEX(songs.artist_id) as artist_id, artist_name, artist_directory, song_cover_image, song_description, song_lyrics, song_directory FROM songs JOIN artists on songs.artist_id = artists.artist_id WHERE CHAR_LENGTH(:search_query) > 5 AND INSTR(song_lyrics, :search_query) > 0");
         $statement->execute(array("search_query" => $searchQuery));
         $lyricResults = $statement->fetchAll();
-        $artistResults = array_map(fn($artistEntry) => new ArtistModel(...$artistEntry), $artistResults);
-        $songResults = array_map(fn($songEntry) => new SongModel(...$songEntry), $songResults);
-        $lyricResults = array_map(fn($lyricEntry) => new SongModel(...$lyricEntry), $lyricResults);
+        $artistResults = array_map(static fn($artistEntry) => new ArtistModel(...$artistEntry), $artistResults);
+        $songResults = array_map(static fn($songEntry) => new SongModel(...$songEntry), $songResults);
+        $lyricResults = array_map(static fn($lyricEntry) => new SongModel(...$lyricEntry), $lyricResults);
         return new SearchResultsModel($artistResults, $songResults, $lyricResults);
     }
 
     public function addUser(string $email, string $username, string $password): void {
-        require realpath($_SERVER['DOCUMENT_ROOT'] . "/../app/pepper.php");
+        require dirname($_SERVER['DOCUMENT_ROOT']) . "/app/pepper.php";
         $password_peppered = hash_hmac("sha256", $password, $pepper);
         $password_hashed = password_hash($password_peppered, PASSWORD_BCRYPT);
         $statement = $this->conn->prepare("INSERT INTO users (user_password, user_email, user_name) VALUES (:user_password, :user_email, :user_name)");

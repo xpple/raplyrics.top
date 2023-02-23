@@ -3,7 +3,7 @@
 namespace App;
 
 
-spl_autoload_register(function ($class) {
+spl_autoload_register(static function ($class) {
     static $root;
     if ($root == null) {
         $root = dirname($_SERVER['DOCUMENT_ROOT']);
@@ -24,7 +24,7 @@ use Exception;
 try {
     $requestURI = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     if (str_ends_with($requestURI, "index.php")) {
-        $requestURI = substr($requestURI, 0, strlen($requestURI) - 9);
+        $requestURI = mb_substr($requestURI, 0, -9);
         $requestURI = ltrim($requestURI, '/');
     } else {
         $requestURI = trim($requestURI, '/');

@@ -19,5 +19,5 @@ abstract class Controller {
     /**
      * @throws Exception
      */
-    public abstract function load(): void;
+    abstract public function load(): void;
 }
