@@ -9,6 +9,9 @@ template.innerHTML = `
     :host {
         white-space: normal;
     }
+    :host(:hover) {
+        text-decoration: underline;
+    }
 </style>
 <slot name="text"></slot>`
 
