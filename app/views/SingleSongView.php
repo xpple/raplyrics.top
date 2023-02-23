@@ -120,7 +120,9 @@ function formatLyrics(string $lyrics): string {
             <h1>Lyrics</h1>
             <?= formatLyrics(applyAnnotations(htmlspecialchars($song->songLyrics), $annotations)) ?>
         </div>
-        <div id="annotation"></div>
+        <div id="annotation">
+            <div id="current-annotation"></div>
+        </div>
     </section>
     <section id="submissions">
     </section>

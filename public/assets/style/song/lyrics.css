@@ -63,3 +63,8 @@ div#content p.intro {
 div#content p.verse {
     border-left-color: #4887b7;
 }
+
+div#annotation div#current-annotation {
+    position: absolute;
+    padding-right: inherit;
+}
