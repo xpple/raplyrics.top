@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sign In | Rap Lyrics Top</title>
 
-    <link rel="stylesheet" href="/assets/style/main.css">
-    <link rel="stylesheet" href="/assets/style/header.css">
-    <link rel="stylesheet" href="/assets/style/fieldset.css">
-    <link rel="stylesheet" href="/assets/style/sign-in/body.css">
-    <script src="/assets/script/search.js" type="module" async></script>
+    <link rel="stylesheet" href="/public/assets/style/main.css">
+    <link rel="stylesheet" href="/public/assets/style/header.css">
+    <link rel="stylesheet" href="/public/assets/style/fieldset.css">
+    <link rel="stylesheet" href="/public/assets/style/sign-in/body.css">
+    <script src="/public/assets/script/search.js" type="module" async></script>
 </head>
 <body>
 <header>

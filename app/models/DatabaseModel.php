@@ -11,7 +11,7 @@ readonly class DatabaseModel {
 
     public function __construct() {
         try {
-            require dirname($_SERVER['DOCUMENT_ROOT']) . "/app/login-data.php";
+            require realpath($_SERVER['DOCUMENT_ROOT']) . "/app/login-data.php";
             $this->conn = new PDO("mysql:host={$server};port={$port};dbname={$dbname};charset=UTF8", $user, $pass);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_NUM);
@@ -73,7 +73,7 @@ readonly class DatabaseModel {
     }
 
     public function addUser(string $email, string $username, string $password): void {
-        require dirname($_SERVER['DOCUMENT_ROOT']) . "/app/pepper.php";
+        require realpath($_SERVER['DOCUMENT_ROOT']) . "/app/pepper.php";
         $password_peppered = hash_hmac("sha256", $password, $pepper);
         $password_hashed = password_hash($password_peppered, PASSWORD_BCRYPT);
         $statement = $this->conn->prepare("INSERT INTO users (user_password, user_email, user_name) VALUES (:user_password, :user_email, :user_name)");

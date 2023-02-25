@@ -6,7 +6,7 @@ namespace App;
 spl_autoload_register(static function ($class) {
     static $root;
     if ($root == null) {
-        $root = dirname($_SERVER['DOCUMENT_ROOT']);
+        $root = realpath($_SERVER['DOCUMENT_ROOT']);
     }
     $parts = explode('\\', $class);
     $filename = array_pop($parts);
