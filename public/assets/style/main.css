@@ -1,12 +1,24 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
 html {
     font-family: helvetica, sans-serif;
     font-size: 17px;
     color: #21252a;
     background-color: #f8f9fa;
 }
-body {
-    margin-top: 0;
+
+img, picture, svg, video {
+    display: block;
+    max-width: 100%;
 }
-input, button {
-    font-size: 17px;
+
+button, input, select, textarea {
+    font: inherit;
 }

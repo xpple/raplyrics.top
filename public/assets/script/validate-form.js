@@ -40,6 +40,8 @@ password.addEventListener('input', () => {
         password.setCustomValidity("We require your password to contain at least one digit!");
     } else if (containsNoSpecialCharacter(password.value)) {
         password.setCustomValidity(`Password must contain at least one of "${specialCharacters.join('')}"!`);
+    } else if (!confirm.validity.valueMissing) {
+        confirm.dispatchEvent(new Event('input'));
     } else {
         password.setCustomValidity("");
     }
