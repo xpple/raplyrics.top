@@ -1,10 +1,8 @@
 export class AnnotationManager {
-    static #currentAnnotation = null;
     static #annotationContainer = document.getElementById("current-annotation");
 
-    static setAnnotation(annotation) {
-        AnnotationManager.#currentAnnotation = annotation;
-        AnnotationManager.#annotationContainer.innerHTML = annotation;
-        AnnotationManager.#annotationContainer.style.top = window.innerHeight / 2 + window.scrollY + "px";
+    static setAnnotation(annotatedText) {
+        AnnotationManager.#annotationContainer.innerHTML = annotatedText.querySelector("template").innerHTML;
+        AnnotationManager.#annotationContainer.style.top = annotatedText.getBoundingClientRect().top + window.scrollY + "px";
     }
 }

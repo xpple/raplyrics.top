@@ -27,14 +27,10 @@ export class HTMLAnnotatedTextElement extends HTMLElement {
     }
 
     connectedCallback() {
-        this.addEventListener('click', () => {
-            AnnotationManager.setAnnotation(this.querySelector("template").innerHTML);
-        });
+        this.addEventListener('click', () => AnnotationManager.setAnnotation(this));
     }
 
     disconnectedCallback() {
-        this.removeEventListener('click', () => {
-            AnnotationManager.setAnnotation(this.querySelector("template").innerHTML);
-        });
+        this.removeEventListener('click', () => AnnotationManager.setAnnotation(this));
     }
 }
